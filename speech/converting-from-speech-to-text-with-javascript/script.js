@@ -37,7 +37,8 @@ renderNotes(notes);
 // allowing us to keep recording even when the user pauses. 
 recognition.continuous = true;
 
-recognition.lang = 'de';
+recognition.lang = 'en';
+recognition.interimResults = true;
 
 // This block is called every time the Speech APi captures a line. 
 recognition.onresult = function(event) {
@@ -56,7 +57,7 @@ recognition.onresult = function(event) {
   var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
 
   if(!mobileRepeatBug) {
-    noteContent += transcript;
+    noteContent = transcript;
     noteTextarea.val(noteContent);
   }
 };
