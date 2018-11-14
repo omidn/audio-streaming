@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Voice Test</title>
+        <script type="text/javascript" src="recorder.js"></script>
+        <script type="text/javascript">
+            //the whole config object as parameter is optional
+            let recorder = new Recorder({
+                //optional
+                chunkSize: 500,
+                //optional
+                dataType: { 'type' : 'audio/ogg' }
+            });
+
+            //Triggers when the user accepted the microphone usage / when the gUM is loaded
+            recorder.onReady(function(){
+                //Starts recording [optionally, you can overwrite the chunk size -> start(200)]
+                this.start();
+
+                //Returns the state of the MediaRecorder interface instance
+                this.getState();
+
+                //Triggers each time a chunk is full
+                this.onChunk(function(blob){
+                    console.log();
+                });
+
+                setTimeout(() => {
+                    //Stop recording
+                    this.stop();
+
+                    //Combines the chunks to a single blob
+                    this.saveData();
+
+                    //Returns an array with all chunks
+                    this.getChunks();
+
+                    //Resets the chunks, after that, getChunks() will be empty
+                    this.resetChunks();
+
+                    //Returns a full blob, created by saveData()
+                    this.getBlob();
+
+                    //Resets the blob, after that, getBlob() will be null
+                    this.resetBlob();
+
+                    //Returns the object url of the currently stored blob
+                    this.getObjectUrl();
+
+                    //Returns the processed data url of the audio file in a callback
+                    this.getDataUrl(dataUrl => console.log(dataUrl));
+                }, 5000);
+            });
+        </script>
+    </head>
+    <body>
+        <audio src="" controls></audio>
+    </body>
+</html>

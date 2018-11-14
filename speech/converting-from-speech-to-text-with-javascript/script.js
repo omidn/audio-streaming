@@ -1,6 +1,13 @@
 try {
   var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   var recognition = new SpeechRecognition();
+  //var grammar = '#JSGF V1.0; grammar colors; public <color> = aqua | azure | beige | bisque | black | blue | brown | chocolate | coral | crimson | cyan | fuchsia | ghostwhite | gold | goldenrod | gray | green | indigo | ivory | khaki | lavender | lime | linen | magenta | maroon | moccasin | navy | olive | orange | orchid | peru | pink | plum | purple | red | salmon | sienna | silver | snow | tan | teal | thistle | tomato | turquoise | violet | white | yellow ;'
+  //   var grammar = '#JSGF V1.0; grammar numbers; public <number> = eins | zwei | drei | vier | fünf ;'
+  //
+  //   var speechRecognitionList = new webkitSpeechGrammarList();
+  //   speechRecognitionList.addFromString(grammar, 1);
+  //   recognition.grammars = speechRecognitionList;
+  //   http://chromium.2324630.n4.nabble.com/chromium-html5-SpeechGrammarList-working-td22789.html
 }
 catch(e) {
   console.error(e);
