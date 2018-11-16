@@ -9,8 +9,8 @@ class Recorder {
 
         this.chunks = [];
         this.mediaRecorder = null;
-        this.onReadyCallbacks = [];
-        this.onChunkCallbacks = [];
+        // this.onReadyCallbacks = [];
+        // this.onChunkCallbacks = [];
         this.blob = null;
 
 
@@ -19,7 +19,7 @@ class Recorder {
                 audio: true
             };
 
-            navigator.mediaDevices.getUserMedia(this.constraints).then((stream)=> {
+            navigator.mediaDevices.getUserMedia(this.constraints).then((stream) => {
                 this.handleStream(stream);
 
             }).catch(e => {
@@ -37,26 +37,29 @@ class Recorder {
     }
 
     onReady(callback) {
-        this.onReadyCallbacks.push(callback);
+        // this.onReadyCallbacks.push(callback);
+        // callback();
+        this.onReadyCallback = callback;
     }
 
     onChunk(callback) {
-        this.onChunkCallbacks.push(callback);
+        // this.onChunkCallbacks.push(callback);
+        this.onChunkCallback = callback;
+        // callback();
     }
 
     start(chunkSize) {
-        console.log('start this', this, this.mediaRecorder, this.options.chunkSize, this.options);
+        // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/start
+        // timeslice
         this.mediaRecorder.start(chunkSize || this.options.chunkSize);
     }
 
     stop() {
-        console.log('mediarecorder stop');
         this.mediaRecorder.stop();
     }
 
     saveData() {
         this.blob = new Blob(this.chunks, this.options.dataType);
-        console.log('saveData from chunks blob 0, this.chunks', this.blob, this.chunks);
     }
 
     getChunks() {
@@ -82,7 +85,7 @@ class Recorder {
         this.chunks = [];
     }
 
-    resetBlob(){
+    resetBlob() {
         this.resetChunks();
     }
 
@@ -91,6 +94,7 @@ class Recorder {
     // -------------------------------------------------------- //
 
     handleStream(stream) {
+        console.log('Handle Stream');
         this.mediaRecorder = new MediaRecorder(stream);
 
         this.mediaRecorder.ondataavailable = this.handleRecorderData.bind(this);
@@ -123,18 +127,19 @@ class Recorder {
 
 
     triggerOnReadyEvent() {
-        for (let i = 0; i < this.onReadyCallbacks.length; i++) {
-            this.onReadyCallbacks[i].bind(this)();
-        }
+        // for (let i = 0; i < this.onReadyCallbacks.length; i++) {
+        //     this.onReadyCallbacks[i].bind(this)();
+        // }
+        this.onReadyCallback.bind(this)();
     }
 
     triggerOnChunkEvent(chunkBlob) {
-        for (let i = 0; i < this.onChunkCallbacks.length; i++) {
-            this.onChunkCallbacks[i].bind(this)(chunkBlob);
-        }
+        // for (let i = 0; i < this.onChunkCallbacks.length; i++) {
+        //     this.onChunkCallbacks[i].bind(this)(chunkBlob);
+        // }
+        this.onChunkCallback.bind(this)(chunkBlob);
     }
 }
-
 
 
 export default Recorder;
