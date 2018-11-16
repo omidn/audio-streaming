@@ -35,7 +35,7 @@ let Recorder = function(options){
 
     self.getState = function(){
         return mediaRecorder.state;
-    };
+    }
 
     self.onReady = function(callback){
         onReadyCallbacks.push(callback);

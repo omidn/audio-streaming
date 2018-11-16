@@ -8,7 +8,7 @@ io.on('connection', function (socket) {
 
 // Instantiates a client
    const speech = Speech({
-                                         // voice-654d69a0acd7.json
+         // voice-654d69a0acd7.json
         keyFilename: './voice-654d69a0acd7.json' // file json key
    });
     const encoding = 'LINEAR16';

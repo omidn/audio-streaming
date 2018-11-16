@@ -13,7 +13,6 @@ https://github.com/nwjs/nw.js/issues/1115
 
 
 # WebSocket
-Benötigt wird ein Server, der das Websockets Protokoll unterstützt (TCP)
 ## WebSocket server is needed
 https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
 https://www.html5rocks.com/de/tutorials/websockets/basics/
@@ -38,3 +37,4 @@ https://docs.microsoft.com/en-gb/azure/cognitive-services/speech-service/quickst
 
 # Using Threads via Web Workers to improve performance
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+

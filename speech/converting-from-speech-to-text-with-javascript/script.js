@@ -7,7 +7,12 @@ try {
   //   var speechRecognitionList = new webkitSpeechGrammarList();
   //   speechRecognitionList.addFromString(grammar, 1);
   //   recognition.grammars = speechRecognitionList;
-  //   http://chromium.2324630.n4.nabble.com/chromium-html5-SpeechGrammarList-working-td22789.html
+  //
+    var colors = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
+    var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
+    var speechRecognitionList = new webkitSpeechGrammarList();
+    speechRecognitionList.addFromString(grammar, 1);
+    recognition.grammars = speechRecognitionList;
 }
 catch(e) {
   console.error(e);
@@ -38,6 +43,7 @@ renderNotes(notes);
 recognition.continuous = true;
 
 recognition.lang = 'en';
+recognition.lang = 'de';
 recognition.interimResults = true;
 
 // This block is called every time the Speech APi captures a line. 
@@ -60,6 +66,15 @@ recognition.onresult = function(event) {
     noteContent = transcript;
     noteTextarea.val(noteContent);
   }
+
+    var last = event.results.length - 1;
+    var color = event.results[last][0].transcript;
+    var bg = document.querySelector('body');
+    try {
+        bg.style.backgroundColor = color;
+    } catch (error) {
+      console.log(error);
+    }
 };
 
 recognition.onstart = function() { 
