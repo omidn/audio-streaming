@@ -27,3 +27,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Web Speech
+https://www.google.com/chrome/privacy/whitepaper.html#speech
