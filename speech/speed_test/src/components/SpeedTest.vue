@@ -10,18 +10,18 @@
         <textarea>Rezepte des tages</textarea>
         <br>
         <h4>Text-Output</h4>
-        <textarea>text-output</textarea>
+        <textarea id="text-output-1">text-output</textarea>
         <br>
-        <p>Time till received text-output: <span id="timer"></span></p>
+        <p>Time till received text-output: <span id="timer-1"></span></p>
 
         <h3>Sending Audio to CVI-API and receive text from CVI-API</h3>
         <h4>Audio-Input</h4>
         <textarea id="audio-in">Rezepte des tages</textarea>
         <br>
         <h4>Text-Output</h4>
-        <textarea>text-output</textarea>
+        <textarea id="text-output-2">text-output</textarea>
         <br>
-        <p>Time till received text-output: <span id="timer2"></span></p>
+        <p>Time till received text-output: <span id="timer-2"></span></p>
     </div>
 </template>
 

@@ -27,12 +27,15 @@ const test2 =() => {
                     let requestName = 'Audio JSON';
                     let requestData = blob;
 
-                    const timerDom = document.getElementById('timer2');
+                    const timerDom = document.getElementById('timer-2');
+                    const textOutputDom = document.getElementById('text-output-2');
                     const startDate = new Date();
                     const cviAPIProm = cviAPI.request(requestName, requestData);
 
                     cviAPIProm.then(response => {
                         console.log('response', requestName, response);
+                        textOutputDom.innerHTML = response.data.text;
+                        textOutputDom.style = 'color:green';
                     }).catch(err => {
                             console.log('ERROR', requestName, err);
                         }
@@ -42,6 +45,7 @@ const test2 =() => {
                         let duration = endDate.getTime() - startDate.getTime();
                         let time = duration / 1000;
                         timerDom.innerHTML = time;
+                        timerDom.style = 'color:green';
                     });
                 })();
             },

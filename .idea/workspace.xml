@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e627659f-d6f6-4d54-8c5d-24284ad42910" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speech/example/recorder.js" beforeDir="false" afterPath="$PROJECT_DIR$/speech/example/recorder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/speech/speed_test/src/components/SpeedTest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/speech/speed_test/src/components/SpeedTest.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speech/speed_test/src/components/recorder.js" beforeDir="false" afterPath="$PROJECT_DIR$/speech/speed_test/src/components/recorder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speech/speed_test/src/components/recorderUse.js" beforeDir="false" afterPath="$PROJECT_DIR$/speech/speed_test/src/components/recorderUse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speech/speed_test/src/components/web-audio.js" beforeDir="false" afterPath="$PROJECT_DIR$/speech/speed_test/src/components/web-audio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speech/speed_test/src/components/commonVoiceInterfaceRESTAPI_2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/speech/speed_test/src/components/test1.js" beforeDir="false" afterPath="$PROJECT_DIR$/speech/speed_test/src/components/test1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speech/speed_test/src/components/test2.js" beforeDir="false" afterPath="$PROJECT_DIR$/speech/speed_test/src/components/test2.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,20 +17,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="recorder.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/recorder.js">
+      <file leaf-file-name="commonVoiceInterfaceRESTAPI_ajax.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/commonVoiceInterfaceRESTAPI_ajax.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="48" column="46" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recorderUse.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/recorderUse.js">
+      <file leaf-file-name="ajax.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/ajax.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+            <state relative-caret-position="263">
+              <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpeedTest.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/SpeedTest.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-95">
+              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+              <folding>
+                <element signature="e#1029#1057#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commonVoiceInterfaceRESTAPI.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/commonVoiceInterfaceRESTAPI.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test2.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/test2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#72#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test1.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/test1.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -48,7 +89,6 @@
       <find>triggerOnChunkEvent</find>
       <find>private</find>
       <find>handleStream</find>
-      <find>onReady</find>
       <find>mediaRecorder</find>
       <find>saveData</find>
       <find>onchunk</find>
@@ -56,17 +96,25 @@
       <find>rese</find>
       <find>console</find>
       <find>dataUrl)</find>
-      <find>triggerOnReadyEvent</find>
       <find>dataUrl</find>
       <find>blob</find>
       <find>getDataUrl</find>
       <find>chunks</find>
       <find>handleRecorderData</find>
       <find>this.blob</find>
-      <find>onReadyCallbacks</find>
       <find>start</find>
-      <find>handleRecorderData</find>
+      <find>onReadyCallbacks</find>
+      <find>onChunkCallbacks</find>
+      <find>onChunkCallback</find>
+      <find>onReady</find>
+      <find>onChunk</find>
+      <find>triggerOnReadyEvent</find>
+      <find>Access-Control-Allow-Origin</find>
+      <find>JSON.stringify</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/speech/speed_test/node_modules/axios</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -83,12 +131,24 @@
         <option value="$PROJECT_DIR$/speech/vue_speech_streaming/speech-websocket/app.js" />
         <option value="$PROJECT_DIR$/info.md" />
         <option value="$PROJECT_DIR$/speech/speed_test/src/components/HelloWorld.vue" />
-        <option value="$PROJECT_DIR$/speech/speed_test/src/App.vue" />
         <option value="$PROJECT_DIR$/speech/example/recorder.js" />
         <option value="$PROJECT_DIR$/speech/speed_test/src/components/web-audio.js" />
-        <option value="$PROJECT_DIR$/speech/speed_test/src/components/SpeedTest.vue" />
         <option value="$PROJECT_DIR$/speech/speed_test/src/components/recorderUse.js" />
         <option value="$PROJECT_DIR$/speech/speed_test/src/components/recorder.js" />
+        <option value="$PROJECT_DIR$/speech/speed_test/dummy_data/user_login_skill_edge.json" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/App.vue" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/components/commonVoiceInterfaceRestAPI.js" />
+        <option value="$PROJECT_DIR$/speech/speed_test/dist/index.html" />
+        <option value="$PROJECT_DIR$/speech/speed_test/README.md" />
+        <option value="$PROJECT_DIR$/speech/speed_test/package.json" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/components/loadAudio.js" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/components/ajax2.js" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/components/commonVoiceInterfaceRESTAPI.js" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/components/ajax.js" />
+        <option value="$PROJECT_DIR$/speech/speed_test/node_modules/axios/lib/defaults.js" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/components/SpeedTest.vue" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/components/test1.js" />
+        <option value="$PROJECT_DIR$/speech/speed_test/src/components/test2.js" />
       </list>
     </option>
   </component>
@@ -117,9 +177,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="93" />
+    <option name="x" value="1" />
+    <option name="y" value="52" />
     <option name="width" value="1680" />
-    <option name="height" value="957" />
+    <option name="height" value="954" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -146,7 +207,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -163,7 +223,108 @@
               <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
               <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
               <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="converting-from-speech-to-text-with-javascript" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
               <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="axios" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="axios" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="axios" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="adapters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="axios" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="cancel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="axios" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="axios" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="dummy_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart_voice_test" type="462c0819:PsiDirectoryNode" />
+              <item name="speech" type="462c0819:PsiDirectoryNode" />
+              <item name="speed_test" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="dummy_data" type="462c0819:PsiDirectoryNode" />
+              <item name="audio" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="smart_voice_test" type="b2602c69:ProjectViewProjectNode" />
@@ -184,6 +345,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -194,14 +356,16 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/speech/speed_test/public/dummy_data/json" />
+      <recent name="$PROJECT_DIR$/speech/speed_test/public" />
       <recent name="$PROJECT_DIR$/speech" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/speech/speed_test/src/components" />
+      <recent name="$PROJECT_DIR$/speech/speed_test/public/dummy_data/audio" />
       <recent name="$PROJECT_DIR$/speech/vue_speech_streaming/speech-websocket" />
       <recent name="$PROJECT_DIR$/speech/vue_speech_streaming" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/speech" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -239,12 +403,14 @@
       <workItem from="1542197138872" duration="4135000" />
       <workItem from="1542268757138" duration="5399000" />
       <workItem from="1542279770805" duration="926000" />
-      <workItem from="1542286693781" duration="23064000" />
+      <workItem from="1542286693781" duration="25686000" />
+      <workItem from="1543305581624" duration="26781000" />
+      <workItem from="1543389210209" duration="6347000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34865000" />
+    <option name="totallyTimeSpent" value="70615000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -256,7 +422,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="26" width="1680" height="954" extended-state="6" />
+    <frame x="2" y="25" width="1680" height="954" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -264,16 +430,16 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32905483" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23103851" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26190478" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24969475" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.25087515" />
+      <window_info anchor="bottom" id="TypeScript" order="8" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26800978" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32830626" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24969475" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -288,109 +454,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/speech/vue_speech_streaming/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/vue_speech_streaming/speech-websocket/.nvmrc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/vue_speech_streaming/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/vue_speech_streaming/speech-websocket/voice-654d69a0acd7.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/converting-from-speech-to-text-with-javascript/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/vue_speech_streaming/speech-websocket/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/info.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="135">
-            <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/converting-from-speech-to-text-with-javascript/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/converting-from-speech-to-text-with-javascript/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="52" column="56" lean-forward="true" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/vue-speech-streaming/README.md" />
-    <entry file="file://$PROJECT_DIR$/speech/vue-speech-streaming/README.md" />
-    <entry file="file://$PROJECT_DIR$/speech/vue-speech-streaming/config/dev.env.js" />
-    <entry file="file://$PROJECT_DIR$/speech/vue-speech-streaming/src/components/Speech.vue" />
-    <entry file="file://$PROJECT_DIR$/speech/vue_speech_streaming/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/info.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="135">
-            <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/speech/vue_speech_streaming/src/components/Speech.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -490,25 +553,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/speech/vue_speech_streaming/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/speech/converting-from-speech-to-text-with-javascript/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/converting-from-speech-to-text-with-javascript/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="64" column="24" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -543,37 +593,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="39" lean-forward="true" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/speech/speed_test/babel.config.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/speed_test/package.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/speech/example/voice.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
           <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/web-audio.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/SpeedTest.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -584,17 +610,170 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/recorderUse.js">
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/public/dummy_data/json/user_login_skill_edge.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+        <state relative-caret-position="15">
+          <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/SpeedTest2.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="29" lean-forward="true" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/web-audio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/public/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/converting-from-speech-to-text-with-javascript/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="64" column="24" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="465">
+            <caret line="31" column="60" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/node_modules/tiny-timer/dist/tiny-timer.cjs.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/recorder.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="48" column="46" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
+        <state relative-caret-position="240">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/recorderUse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="25" lean-forward="true" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/ajax2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/loadAudio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/commonVoiceInterfaceRESTAPI_ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/node_modules/axios/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="102" column="32" lean-forward="true" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/node_modules/axios/lib/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-111" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/node_modules/axios/lib/adapters/http.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1555">
+          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/commonVoiceInterfaceRESTAPI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/node_modules/axios/lib/defaults.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/SpeedTest.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-95">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+          <folding>
+            <element signature="e#1029#1057#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/test1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech/speed_test/src/components/test2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#72#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
