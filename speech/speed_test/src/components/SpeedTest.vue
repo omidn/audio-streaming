@@ -33,9 +33,8 @@
 
 
     // import CommonVoiceInterfaceRESTAPI from './commonVoiceInterfaceRESTAPI';
-    import test1 from './test1';
+    // import test1 from './test1';
     import test2 from './test2';
-    // import LoadAudio from './loadAudio';
 
     export default {
         name: 'HelloWorld',
@@ -51,8 +50,6 @@
             init() {
                 // test1();
                 test2();
-
-
 
             }
         }

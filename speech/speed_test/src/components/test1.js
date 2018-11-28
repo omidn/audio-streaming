@@ -1,4 +1,4 @@
-import CommonVoiceInterfaceRESTAPI from './commonVoiceInterfaceRESTAPI';
+import CommonVoiceInterfaceRESTAPI from './commonVoiceInterfaceRESTAPI_2';
 
 const test1 =() => {
     const cviAPI = new CommonVoiceInterfaceRESTAPI();

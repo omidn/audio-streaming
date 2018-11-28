@@ -13,8 +13,8 @@ const test2 =() => {
     loadAudioProm.then(response => {
         console.log('loadAudio response', response.data, typeof response.data);
 
-        var blob = new Blob([response.data], {type: 'arraybuffer'});
-        console.log('### blob', blob);
+        var blob = new Blob([response.data], {type: 'audio/wav'});
+        console.log('### blob', blob, typeof blob);
 
 
         var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -29,12 +29,12 @@ const test2 =() => {
                 (() => {
                     const cviAPI = new CommonVoiceInterfaceRESTAPI();
                     let requestName = 'Audio JSON';
-                    let requestData = {'data-binary': buffer};
-                    // requestData = buffer;
+                    let requestData;// = {'data-binary': buffer};
+                    requestData = buffer;
                     // requestData = response.data;
                     requestData = blob;
-                    requestData = {'data-binary': 'blob'};
-                    requestData = '';
+                    // requestData = {'data-binary': 'blob'};
+                    // requestData = '';
                     const timerDom = document.getElementById('timer');
                     const startDate = new Date();
                     const cviAPIProm = cviAPI.request(requestName, requestData);

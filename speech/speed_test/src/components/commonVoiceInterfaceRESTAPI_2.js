@@ -1,7 +1,5 @@
 "use strict";
-// import axios from 'axios';
-import fetch from './ajax';
-
+import axios from 'axios';
 
 class CommonVoiceInterfaceRESTAPI {
     constructor(options) {
@@ -64,7 +62,7 @@ class CommonVoiceInterfaceRESTAPI {
 
         console.log('requestName', requestName,'options', options);
 
-        let prom = fetch(options).then(response => {
+        let prom = axios(options).then(response => {
             return new Promise((resolve) => {
                 return resolve(response);
             })
