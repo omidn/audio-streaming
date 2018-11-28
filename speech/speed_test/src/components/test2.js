@@ -21,21 +21,13 @@ const test2 =() => {
         // var source = audioCtx.createBufferSource();
         audioCtx.decodeAudioData(response.data, function (buffer) {
                 console.log('###buffer', buffer, typeof buffer);
-                // source.buffer = buffer;
-                //
-                // source.connect(audioCtx.destination);
-                // source.loop = true;
 
                 (() => {
                     const cviAPI = new CommonVoiceInterfaceRESTAPI();
                     let requestName = 'Audio JSON';
-                    let requestData;// = {'data-binary': buffer};
-                    requestData = buffer;
-                    // requestData = response.data;
-                    requestData = blob;
-                    // requestData = {'data-binary': 'blob'};
-                    // requestData = '';
-                    const timerDom = document.getElementById('timer');
+                    let requestData = blob;
+
+                    const timerDom = document.getElementById('timer2');
                     const startDate = new Date();
                     const cviAPIProm = cviAPI.request(requestName, requestData);
 

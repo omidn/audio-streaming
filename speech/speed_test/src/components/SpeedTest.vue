@@ -31,9 +31,7 @@
     // var audio = new Audio();
     // console.log(audio);
 
-
-    // import CommonVoiceInterfaceRESTAPI from './commonVoiceInterfaceRESTAPI';
-    // import test1 from './test1';
+    import test1 from './test1';
     import test2 from './test2';
 
     export default {
@@ -48,7 +46,7 @@
 
         methods: {
             init() {
-                // test1();
+                test1();
                 test2();
 
             }
