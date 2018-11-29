@@ -1,6 +1,6 @@
 import CommonVoiceInterfaceRESTAPI from './commonVoiceInterfaceRESTAPI';
 
-const test1 =() => {
+const test1 = () => {
     const cviAPI = new CommonVoiceInterfaceRESTAPI();
     let requestName = 'Text JSON';
     let requestData = {"text": "Rezepte des tages"};
@@ -12,14 +12,12 @@ const test1 =() => {
     const cviAPIProm = cviAPI.request(requestName, requestData);
 
     cviAPIProm.then(response => {
-        console.log('response', requestName, response);
         textOutputDom.innerHTML = response.data.text;
         textOutputDom.style = 'color:green';
     }).catch(err => {
             console.log('ERROR', requestName, err);
         }
     ).then(function () {
-        console.log('ALWAYS');
         const endDate = new Date();
         let duration = endDate.getTime() - startDate.getTime();
         let time = duration / 1000;

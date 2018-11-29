@@ -42,7 +42,7 @@ const fetch = (options) => {
         const header = options.headers;
         for (const key in header) {
             const value = header[key];
-            console.log('header.key',key,'value', value );
+            console.log('header.key', key, 'value', value);
             request.setRequestHeader(key, value);
 
         }
