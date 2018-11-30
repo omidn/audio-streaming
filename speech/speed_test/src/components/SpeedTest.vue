@@ -62,6 +62,8 @@
 
         </select>
 
+        <!--<button id="start">START</button>-->
+
     </div>
 </template>
 
@@ -83,12 +85,26 @@
 
         },
 
-
         methods: {
             init() {
+
+                // const buttonStart = document.getElementById('start');
+                // buttonStart.addEventListener('click', () =>{
+                //     // console.log('start');
+                //     // const voice = new Voice(()=>{
+                //     //     voice.cancel();
+                //     //     voice.resume();
+                //     //     voice.speak('Hallo');
+                //     //     console.log('voice.speak Hallo')
+                //     //     // voice.pause();
+                //     // });
+                //     // console.log('voice',voice);
+                // });
                 const voice = new Voice(()=>{
-                    // voice.speak('Hallo');
-                    // console.log('voice.speak Hallo')
+                    voice.cancel();
+                    voice.resume();
+                    voice.speak('Hallo, was kann ich für Sie tun?');
+                    console.log('voice.speak Hallo')
                 });
                 console.log('voice',voice);
                 const textInput1Dom = document.getElementById('text-input-1');
@@ -100,7 +116,11 @@
                     onspeechendCallback: (text) => {
                         console.log('onspeechendCallback text', text)
                         test1({text, callback:(returnedText)=>{
+                            voice.cancel();
+                            voice.resume();
                             voice.speak(returnedText);
+                            console.log('voice speaks', returnedText);
+                            // speechRecognition.start();
                         }});
                     }
                 });

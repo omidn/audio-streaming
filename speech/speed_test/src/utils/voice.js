@@ -68,8 +68,25 @@ export class Voice {
             // utterThis.pitch = pitch.value;
             // utterThis.rate = rate.value;
             this.synth.speak(utterThis);
+
         }
     }
+
+    cancel() {
+        this.synth.cancel();
+    }
+
+    pause() {
+        this.synth.pause();
+        console.log('voice pause')
+    }
+
+    resume() {
+        this.synth.resume();
+        console.log('voice resume');
+    }
+
+
 }
 
 
