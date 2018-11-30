@@ -4,35 +4,35 @@
 
         <h2>Via Common Voice Interface REST API</h2>
 
-        <h3>Sending text to CVI-API and receive text from CVI-API</h3>
-        <div class="container">
-        <div class="container__left">
-        <h4>Text-Input</h4>
-        <textarea>Rezepte des tages</textarea>
-        </div>
+        <!--<h3>Sending text to CVI-API and receive text from CVI-API</h3>-->
+        <!--<div class="container">-->
+        <!--<div class="container__left">-->
+        <!--<h4>Text-Input</h4>-->
+        <!--<textarea>Rezepte des tages</textarea>-->
+        <!--</div>-->
 
-        <div class="container__right">
-        <h4>Text-Output</h4>
-        <textarea id="text-output-1">text-output</textarea>
-        </div>
-        </div>
-        <p class="time-output">Time till received text-output: <span id="timer-1"></span></p>
-        <br>
+        <!--<div class="container__right">-->
+        <!--<h4>Text-Output</h4>-->
+        <!--<textarea id="text-output-1">text-output</textarea>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<p class="time-output">Time till received text-output: <span id="timer-1"></span></p>-->
+        <!--<br>-->
 
-        <h3>Sending Audio to CVI-API and receive text from CVI-API</h3>
-        <div class="container">
-        <div class="container__left">
-        <h4>Audio-Input</h4>
-        <textarea id="audio-in">Erzähle mir einen Witz</textarea>
-        </div>
+        <!--<h3>Sending Audio to CVI-API and receive text from CVI-API</h3>-->
+        <!--<div class="container">-->
+        <!--<div class="container__left">-->
+        <!--<h4>Audio-Input</h4>-->
+        <!--<textarea id="audio-in">Erzähle mir einen Witz</textarea>-->
+        <!--</div>-->
 
-        <div class="container__right">
-        <h4>Text-Output</h4>
-        <textarea id="text-output-2">text-output</textarea>
-        </div>
-        </div>
-        <p class="time-output">Time till received text-output: <span id="timer-2"></span></p>
-        <br>
+        <!--<div class="container__right">-->
+        <!--<h4>Text-Output</h4>-->
+        <!--<textarea id="text-output-2">text-output</textarea>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<p class="time-output">Time till received text-output: <span id="timer-2"></span></p>-->
+        <!--<br>-->
 
 
         <h3>Record voice via mic and sending Audio to CVI-API and receive text from CVI-API</h3>
@@ -53,14 +53,19 @@
             <span class="record-active__text">stop recording</span>
         </button>
 
+        <br>
+        <ul id="downloads">
+
+        </ul>
+
     </div>
 </template>
 
 <script>
     import recorderUse from './recorderUse2';
 
-    import test1 from './test1';
-    import test2 from './test2';
+    // import test1 from './test1';
+    // import test2 from './test2';
 
     export default {
         name: 'HelloWorld',
@@ -74,8 +79,8 @@
 
         methods: {
             init() {
-                test1();
-                test2();
+                // test1();
+                // test2();
                 recorderUse();
 
 

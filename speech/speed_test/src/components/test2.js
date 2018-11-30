@@ -6,11 +6,13 @@ const test2 = () => {
     const audioDom = document.getElementById('audio-in');
     const loadAudio = new LoadAudio();
     let url = '/dummy_data/audio/witz.wav';
+    url = '/dummy_data/audio/witz_self.wav';
     const loadAudioProm = loadAudio.loadFile(url);
 
 
     loadAudioProm.then(response => {
         var blob = new Blob([response.data], {type: 'audio/wav'});
+        console.log('blob of wav file', blob);
         var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         audioCtx.decodeAudioData(response.data, function () {

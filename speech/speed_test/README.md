@@ -49,3 +49,10 @@ https://air.ghost.io/recording-to-an-audio-file-using-html5-and-js/
 https://developers.google.com/web/fundamentals/media/recording-audio/#access_the_raw_data_from_the_microphone
 
 https://developer.mozilla.org/en-US/docs/Web/API/AudioContext
+
+https://github.com/mattdiamond/Recorderjs/issues/40
+
+https://medium.com/creative-technology-concepts-code/recording-syncing-and-exporting-web-audio-1e1a1e35ef08
+https://stackoverflow.com/questions/28227380/downsampling-a-pcm-audio-buffer-in-javascript
+
+https://github.com/mdn/webaudio-examples/blob/master/offline-audio-context-promise/index.html

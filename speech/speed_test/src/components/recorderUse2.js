@@ -1,6 +1,11 @@
 import Recorder from '../vendor/recorder';
 import CommonVoiceInterfaceRESTAPI from "./commonVoiceInterfaceRESTAPI";
 
+// Audio format must be
+// - Format: wav
+// - Sampling rate: 16000 Hz
+// - Bit resolution: 16 Bit PCM (little endian pulse code modulation)
+// - Audio channels: mono
 
 const recorderUse = function () {
     var gumStream; 						//stream from getUserMedia()
@@ -12,8 +17,6 @@ const recorderUse = function () {
     var audioContext //audio context to help us record
 
     const recordButton = document.getElementById('record-button');
-
-    console.log('recordButton', recordButton)
 
     recordButton.addEventListener('click', () => {
         // console.log('click');
@@ -93,6 +96,9 @@ const recorderUse = function () {
         //create the wav blob and pass it on to createDownloadLink
         rec.exportWAV((blob)=> {
             console.log('Blob', blob);
+            // let rate = 44100;
+            // rate = 16000;
+            exportWAV(blob);
 
             (() => {
                 const cviAPI = new CommonVoiceInterfaceRESTAPI();
@@ -121,6 +127,22 @@ const recorderUse = function () {
 
         });
 
+    }
+
+    function exportWAV(blob) {
+        var url = URL.createObjectURL(blob),
+            li = document.createElement('li'),
+            au = document.createElement('audio'),
+            hf = document.createElement('a');
+
+        au.controls = true;
+        au.src = url;
+        hf.href = url;
+        hf.download = '_test__' + new Date().toISOString().replace('T', '-').slice(0, -5) + '.wav';
+        hf.innerHTML = hf.download;
+        li.appendChild(au);
+        li.appendChild(hf);
+        document.getElementById('downloads').appendChild(li);
     }
 
 
