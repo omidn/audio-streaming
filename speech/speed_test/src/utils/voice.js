@@ -32,10 +32,13 @@ export class Voice {
 
             option.setAttribute('data-lang', this.voices[i].lang);
             option.setAttribute('data-name', this.voices[i].name);
+            option.setAttribute('data-index', i);
             if (this.voices[i].lang ==='de-DE') {
                 selectedIndex = i;
+
             }
             this.voiceSelect.appendChild(option);
+
         }
         this.voiceSelect.selectedIndex = selectedIndex;
         if (this.onReadyCallback) {
@@ -59,14 +62,16 @@ export class Voice {
             utterThis.onerror = function (event) {
                 console.error('SpeechSynthesisUtterance.onerror', event);
             }
-            var selectedOption = this.voiceSelect.selectedOptions[0].getAttribute('data-name');
-            for(let i = 0; i < this.voices.length ; i++) {
-                if(this.voices[i].name === selectedOption) {
-                    utterThis.voice = this.voices[i];
-                }
-            }
+            // var selectedOption = this.voiceSelect.selectedOptions[0].getAttribute('data-name');
+            // for(let i = 0; i < this.voices.length ; i++) {
+            //     if(this.voices[i].name === selectedOption) {
+            //         utterThis.voice = this.voices[i];
+            //     }
+            // }
             // utterThis.pitch = pitch.value;
             // utterThis.rate = rate.value;
+
+            utterThis.voice = this.voices[this.voiceSelect.selectedIndex];
             this.synth.speak(utterThis);
 
         }

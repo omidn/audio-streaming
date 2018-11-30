@@ -65,7 +65,9 @@ class SpeechRecognition {
         this.recognition.start();
     }
 
-
+    abort() {
+        this.recognition.abort();
+    }
 }
 
 

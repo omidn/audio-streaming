@@ -58,7 +58,7 @@
 
         <!--</ul>-->
 
-        <select id="voice-select">
+        <select id="voice-select" style="display:none;">
 
         </select>
 
@@ -101,26 +101,28 @@
                 //     // console.log('voice',voice);
                 // });
                 const voice = new Voice(()=>{
-                    voice.cancel();
-                    voice.resume();
-                    voice.speak('Hallo, was kann ich für Sie tun?');
-                    console.log('voice.speak Hallo')
+                    // voice.cancel();
+                    // voice.resume();
+                    // voice.speak('Hallo, was kann ich für Sie tun?');
+                    // console.log('voice.speak Hallo')
                 });
                 console.log('voice',voice);
                 const textInput1Dom = document.getElementById('text-input-1');
+                // let speechActive = true;
                 const speechRecognition = new SpeechRecognition({
                     onResultCallback: (text) => {
                         console.log('onResultCallback text', text);
                         textInput1Dom.innerHTML = text;
                     },
                     onspeechendCallback: (text) => {
-                        console.log('onspeechendCallback text', text)
+                        console.log('onspeechendCallback text', text);
                         test1({text, callback:(returnedText)=>{
+                            speechRecognition.abort();
                             voice.cancel();
                             voice.resume();
                             voice.speak(returnedText);
                             console.log('voice speaks', returnedText);
-                            // speechRecognition.start();
+                            speechRecognition.start();
                         }});
                     }
                 });
