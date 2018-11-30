@@ -56,3 +56,8 @@ https://medium.com/creative-technology-concepts-code/recording-syncing-and-expor
 https://stackoverflow.com/questions/28227380/downsampling-a-pcm-audio-buffer-in-javascript
 
 https://github.com/mdn/webaudio-examples/blob/master/offline-audio-context-promise/index.html
+
+https://medium.com/archieai/google-actions-vs-alexa-skill-a-comparative-study-4e7bdd3c3c62
+https://developers.google.com/actions/dialogflow/define-actions
+
+https://www.ghacks.net/2018/11/21/google-chrome-blocking-speech-synthesis-api-audio-autoplay/

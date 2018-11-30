@@ -5,7 +5,7 @@ export class Recorder {
         bufferLen: 4096,
         numChannels: 2,
         mimeType: 'audio/wav',
-        sampleRateOut: '16000'
+        sampleRateOut: 16000
     };
 
     recording = false;
@@ -39,7 +39,9 @@ export class Recorder {
         this.node.connect(this.context.destination);    //this should not be necessary
 
         let self = {};
+
         this.worker = new InlineWorker(function () {
+
             let recLength = 0,
                 recBuffers = [],
                 sampleRate,
@@ -54,7 +56,8 @@ export class Recorder {
                         record(e.data.buffer);
                         break;
                     case 'exportWAV':
-                        exportWAV(e.data.type, 16000);
+                        // console.log('e.data.config', e.data.config, e.data);
+                        exportWAV(e.data.type, e.data.sampleRateOut);
                         break;
                     case 'getBuffer':
                         getBuffer();
@@ -78,58 +81,9 @@ export class Recorder {
                 recLength += inputBuffer[0].length;
             }
 
-            // https://stackoverflow.com/questions/28227380/downsampling-a-pcm-audio-buffer-in-javascript
-            // var downsampleBuffer = function (buffer, sampleRate, outSampleRate) {
-            //     console.log('buffer, sampleRate, outSampleRate',buffer, sampleRate, outSampleRate);
-            //     if (outSampleRate == sampleRate) {
-            //         return buffer;
-            //     }
-            //     if (outSampleRate > sampleRate) {
-            //         throw "downsampling rate show be smaller than original sample rate";
-            //     }
-            //     var sampleRateRatio = sampleRate / outSampleRate;
-            //     var newLength = Math.round(buffer.length / sampleRateRatio);
-            //     // var result = new Int16Array(newLength);
-            //     var result = new Float32Array(newLength);
-            //     var offsetResult = 0;
-            //     var offsetBuffer = 0;
-            //     while (offsetResult < result.length) {
-            //         var nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
-            //         var accum = 0, count = 0;
-            //         for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
-            //             accum += buffer[i];
-            //             count++;
-            //         }
-            //
-            //         result[offsetResult] = Math.min(1, accum / count)*0x7FFF;
-            //         offsetResult++;
-            //         offsetBuffer = nextOffsetBuffer;
-            //     }
-            //     return result.buffer;
-            // }
-
-            // https://medium.com/creative-technology-concepts-code/recording-syncing-and-exporting-web-audio-1e1a1e35ef08
-
-            // function exportWAV(type) {
-            //     let buffers = [];
-            //     for (let channel = 0; channel < numChannels; channel++) {
-            //         buffers.push(mergeBuffers(recBuffers[channel], recLength));
-            //     }
-            //     let interleaved;
-            //     if (numChannels === 2) {
-            //         interleaved = interleave(buffers[0], buffers[1]);
-            //     } else {
-            //         interleaved = buffers[0];
-            //     }
-            //     let dataview = encodeWAV(interleaved);
-            //     let audioBlob = new Blob([dataview], {type: type});
-            //
-            //     this.postMessage({command: 'exportWAV', data: audioBlob});
-            // }
-
             function exportWAV(type, rate) {
                 rate = rate || sampleRate;
-                console.log('rate', rate);
+                // console.log('rate', rate);
                 let buffers = [];
                 for (let channel = 0; channel < numChannels; channel++) {
                     buffers.push(mergeBuffers(recBuffers[channel], recLength));
@@ -143,15 +97,13 @@ export class Recorder {
 
                 var downsampledBuffer = downsampleBuffer(interleaved, rate);
                 let dataview = encodeWAV(downsampledBuffer, rate);
-                // let dataview = encodeWAV(interleaved);
                 let audioBlob = new Blob([dataview], {type: type});
-                // this.postMessage(audioBlob);
                 this.postMessage({command: 'exportWAV', data: audioBlob});
             }
 
 
             function downsampleBuffer(buffer, rate) {
-                console.log('downsampleBuffer rate', rate, 'sampleRate', sampleRate, buffer);
+                // console.log('downsampleBuffer rate', rate, 'sampleRate', sampleRate, buffer);
                 if (rate == sampleRate) {
                     return buffer;
                 }
@@ -174,7 +126,7 @@ export class Recorder {
                     offsetResult++;
                     offsetBuffer = nextOffsetBuffer;
                 }
-                console.log('result', result)
+                // console.log('result', result)
                 return result;
             }
 
@@ -237,42 +189,6 @@ export class Recorder {
                 }
             }
 
-            // function encodeWAV(samples) {
-            //     let buffer = new ArrayBuffer(44 + samples.length * 2);
-            //     let view = new DataView(buffer);
-            //
-            //     /* RIFF identifier */
-            //     writeString(view, 0, 'RIFF');
-            //     /* RIFF chunk length */
-            //     view.setUint32(4, 36 + samples.length * 2, true);
-            //     /* RIFF type */
-            //     writeString(view, 8, 'WAVE');
-            //     /* format chunk identifier */
-            //     writeString(view, 12, 'fmt ');
-            //     /* format chunk length */
-            //     view.setUint32(16, 16, true);
-            //     /* sample format (raw) */
-            //     view.setUint16(20, 1, true);
-            //     /* channel count */
-            //     view.setUint16(22, numChannels, true);
-            //     /* sample rate */
-            //     view.setUint32(24, sampleRate, true);
-            //     /* byte rate (sample rate * block align) */
-            //     view.setUint32(28, sampleRate * 4, true);
-            //     /* block align (channel count * bytes per sample) */
-            //     view.setUint16(32, numChannels * 2, true);
-            //     /* bits per sample */
-            //     view.setUint16(34, 16, true);
-            //     /* data chunk identifier */
-            //     writeString(view, 36, 'data');
-            //     /* data chunk length */
-            //     view.setUint32(40, samples.length * 2, true);
-            //
-            //     floatTo16BitPCM(view, 44, samples);
-            //
-            //     return view;
-            // }
-
             function encodeWAV(samples, rate) {
                 let buffer = new ArrayBuffer(44 + samples.length * 2);
                 let view = new DataView(buffer);
@@ -308,47 +224,14 @@ export class Recorder {
 
                 return view;
             }
-            // function encodeWAV(samples){
-            //     var buffer = new ArrayBuffer(44 + samples.length * 2);
-            //     var view = new DataView(buffer);
-            //
-            //     /* RIFF identifier */
-            //     writeString(view, 0, 'RIFF');
-            //     /* RIFF chunk length */
-            //     view.setUint32(4, 36 + samples.length * 2, true);
-            //     /* RIFF type */
-            //     writeString(view, 8, 'WAVE');
-            //     /* format chunk identifier */
-            //     writeString(view, 12, 'fmt ');
-            //     /* format chunk length */
-            //     view.setUint32(16, 16, true);
-            //     /* sample format (raw) */
-            //     view.setUint16(20, 1, true);
-            //     /* channel count */
-            //     view.setUint16(22, numChannels, true);
-            //     /* sample rate */
-            //     view.setUint32(24, sampleRate, true);
-            //     /* byte rate (sample rate * block align) */
-            //     view.setUint32(28, sampleRate * 4, true);
-            //     /* block align (channel count * bytes per sample) */
-            //     view.setUint16(32, numChannels * 2, true);
-            //     /* bits per sample */
-            //     view.setUint16(34, 16, true);
-            //     /* data chunk identifier */
-            //     writeString(view, 36, 'data');
-            //     /* data chunk length */
-            //     view.setUint32(40, samples.length * 2, true);
-            //
-            //     floatTo16BitPCM(view, 44, samples);
-            //
-            //     return view;
-            // }
+
         }, self);
 
         this.worker.postMessage({
             command: 'init',
             config: {
                 sampleRate: this.context.sampleRate,
+                sampleRateOut: this.context.sampleRateOut,
                 numChannels: this.config.numChannels
             }
         });
@@ -360,7 +243,6 @@ export class Recorder {
             }
         };
     }
-
 
     record() {
         this.recording = true;
@@ -392,7 +274,8 @@ export class Recorder {
 
         this.worker.postMessage({
             command: 'exportWAV',
-            type: mimeType
+            type: mimeType,
+            sampleRateOut: this.config.sampleRateOut
         });
     }
 

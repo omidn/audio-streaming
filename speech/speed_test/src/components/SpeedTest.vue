@@ -4,20 +4,20 @@
 
         <h2>Via Common Voice Interface REST API</h2>
 
-        <!--<h3>Sending text to CVI-API and receive text from CVI-API</h3>-->
-        <!--<div class="container">-->
-        <!--<div class="container__left">-->
-        <!--<h4>Text-Input</h4>-->
-        <!--<textarea>Rezepte des tages</textarea>-->
-        <!--</div>-->
+        <h3>Sending text via internal webbrowser speech recognition to CVI-API and receive text from CVI-API</h3>
+        <div class="container">
+            <div class="container__left">
+                <h4>Text-Input</h4>
+                <textarea id="text-input-1">from browser speech recognition</textarea>
+            </div>
 
-        <!--<div class="container__right">-->
-        <!--<h4>Text-Output</h4>-->
-        <!--<textarea id="text-output-1">text-output</textarea>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<p class="time-output">Time till received text-output: <span id="timer-1"></span></p>-->
-        <!--<br>-->
+            <div class="container__right">
+                <h4>Text-Output</h4>
+                <textarea id="text-output-1">text-output</textarea>
+            </div>
+        </div>
+        <p class="time-output">Time till received text-output: <span id="timer-1"></span></p>
+        <br>
 
         <!--<h3>Sending Audio to CVI-API and receive text from CVI-API</h3>-->
         <!--<div class="container">-->
@@ -35,36 +35,42 @@
         <!--<br>-->
 
 
-        <h3>Record voice via mic and sending Audio to CVI-API and receive text from CVI-API</h3>
-        <div class="container">
-            <div class="container__left">
-                <h4>Audio-Input</h4>
-                <textarea id="audio-in-2">Erzähle mir einen Witz</textarea>
-            </div>
+        <!--<h3>Record voice via mic and sending Audio to CVI-API and receive text from CVI-API</h3>-->
+        <!--<div class="container">-->
+        <!--<div class="container__left">-->
+        <!--<h4>Audio-Input</h4>-->
+        <!--<textarea id="audio-in-2">Erzähle mir einen Witz</textarea>-->
+        <!--</div>-->
 
-            <div class="container__right">
-                <h4>Text-Output</h4>
-                <textarea id="text-output-3">text-output</textarea>
-            </div>
-        </div>
-        <p class="time-output">Time till received text-output: <span id="timer-3"></span></p>
-        <button type="button" id="record-button" class="record-not-active">
-            <span class="record-not-active__text">start recording</span>
-            <span class="record-active__text">stop recording</span>
-        </button>
+        <!--<div class="container__right">-->
+        <!--<h4>Text-Output</h4>-->
+        <!--<textarea id="text-output-3">text-output</textarea>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<p class="time-output">Time till received text-output: <span id="timer-3"></span></p>-->
+        <!--<button type="button" id="record-button" class="record-not-active">-->
+        <!--<span class="record-not-active__text">start recording</span>-->
+        <!--<span class="record-active__text">stop recording</span>-->
+        <!--</button>-->
 
-        <br>
-        <ul id="downloads">
+        <!--<br>-->
+        <!--<ul id="downloads">-->
 
-        </ul>
+        <!--</ul>-->
+
+        <select id="voice-select">
+
+        </select>
 
     </div>
 </template>
 
 <script>
-    import recorderUse from './recorderUse2';
+    // import recorderUse from './recorderUse';
+    import Voice from '../utils/voice';
 
-    // import test1 from './test1';
+    import SpeechRecognition from '../utils/speechRecognition';
+    import test1 from './test1';
     // import test2 from './test2';
 
     export default {
@@ -77,11 +83,38 @@
 
         },
 
+
         methods: {
             init() {
+                const voice = new Voice(()=>{
+                    // voice.speak('Hallo');
+                    // console.log('voice.speak Hallo')
+                });
+                console.log('voice',voice);
+                const textInput1Dom = document.getElementById('text-input-1');
+                const speechRecognition = new SpeechRecognition({
+                    onResultCallback: (text) => {
+                        console.log('onResultCallback text', text);
+                        textInput1Dom.innerHTML = text;
+                    },
+                    onspeechendCallback: (text) => {
+                        console.log('onspeechendCallback text', text)
+                        test1({text, callback:(returnedText)=>{
+                            voice.speak(returnedText);
+                        }});
+                    }
+                });
+                console.log('speechRecognition', speechRecognition);
+                speechRecognition.start();
+
+                // let voice = new Voice(()=>{
+                //     // voice.speak('Hallo');
+                // });
+                // console.log(voice);
+                // voice.speak('Hallo Du');
                 // test1();
                 // test2();
-                recorderUse();
+                // recorderUse();
 
 
             }
