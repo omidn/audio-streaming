@@ -64,7 +64,7 @@ class CommonVoiceInterfaceRESTAPI {
 
         let prom = axios(options).then(response => {
             return new Promise((resolve) => {
-                console.log('response', requestName, response);
+                console.log('##response', requestName, response);
                 return resolve(response);
             })
         }).catch(err => {

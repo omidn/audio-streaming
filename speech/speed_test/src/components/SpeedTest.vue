@@ -108,6 +108,7 @@
                 });
                 console.log('voice',voice);
                 const textInput1Dom = document.getElementById('text-input-1');
+                let test1Running = false;
                 // let speechActive = true;
                 const speechRecognition = new SpeechRecognition({
                     onResultCallback: (text) => {
@@ -115,15 +116,32 @@
                         textInput1Dom.innerHTML = text;
                     },
                     onspeechendCallback: (text) => {
-                        console.log('onspeechendCallback text', text);
-                        test1({text, callback:(returnedText)=>{
+                        if (!test1Running) {
+                            console.log('onspeechendCallback text', text);
                             speechRecognition.abort();
-                            voice.cancel();
-                            voice.resume();
-                            voice.speak(returnedText);
-                            console.log('voice speaks', returnedText);
-                            speechRecognition.start();
-                        }});
+                            test1Running = true;
+                            test1({
+                                text, callback: (returnedText) => {
+                                    voice.cancel();
+                                    voice.resume();
+                                    voice.speak(returnedText);
+                                    console.log('voice speaks', returnedText);
+
+                                    const _wait = () => {
+                                        if (!voice.synth.speaking) {
+                                            speechRecognition.start();
+                                            clearInterval(interval);
+                                            test1Running = false;
+                                        }
+                                    }
+                                    let interval = setInterval(_wait, 200);
+
+                                    // _wait();
+
+
+                                }
+                            });
+                        }
                     }
                 });
                 console.log('speechRecognition', speechRecognition);
