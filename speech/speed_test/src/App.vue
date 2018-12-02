@@ -1,28 +1,36 @@
 <template>
   <div id="app">
     <!--<img alt="Vue logo" src="./assets/logo.png">-->
-    <SpeedTest msg="Web Speech Speed Test"/>
+    <SpeedTest msg="Smart Voice API-Test"/>
   </div>
 </template>
 
 <script>
-import SpeedTest from './components/SpeedTest.vue'
+import SpeedTest from "./components/SpeedTest.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     SpeedTest
   }
-}
+};
 </script>
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-  }
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

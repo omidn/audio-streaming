@@ -61,3 +61,7 @@ https://medium.com/archieai/google-actions-vs-alexa-skill-a-comparative-study-4e
 https://developers.google.com/actions/dialogflow/define-actions
 
 https://www.ghacks.net/2018/11/21/google-chrome-blocking-speech-synthesis-api-audio-autoplay/
+
+http://p5js.org/reference/#/p5.AudioIn
+https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
+https://medium.com/cleversonder/all-you-need-to-know-about-the-web-audio-api-3df170559378
