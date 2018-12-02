@@ -8,33 +8,37 @@
           <h3 class="content__title">
             <span class="content__title__inner">input</span>
           </h3>
-          <div class="content__main input__content" ref="inputContent">input-content</div>
+          <div class="content__main input__content" ref="inputContent">
+            <div class="content__main-inner">input-content</div>
+          </div>
         </div>
         <div class="content__el action">
           <h3 class="content__title">
             <span class="content__title__inner">action</span>
           </h3>
-          <div class="action__main">
-            <div
-              class="action__el action__voice-speaks"
-              v-bind:class="{ active: activeAction==='actionVoiceSpeaks' }"
-              ref="actionVoiceSpeaks"
-            >
-              <div class="action__el__inner">voice speaks</div>
-            </div>
-            <div
-              class="action__el action__voice-recog"
-              v-bind:class="{ active: activeAction==='actionVoiceRecognition' }"
-              ref="actionVoiceRecog"
-            >
-              <div class="action__el__inner">voice-recognition</div>
-            </div>
-            <div
-              class="action__el action__request"
-              v-bind:class="{ active: activeAction==='actionRequest' }"
-              ref="actionRequest"
-            >
-              <div class="action__el__inner">request</div>
+          <div class="content__main action__main">
+            <div class="content__main-inner">
+              <div
+                class="action__el action__voice-speaks"
+                v-bind:class="{ active: activeAction==='actionVoiceSpeaks' }"
+                ref="actionVoiceSpeaks"
+              >
+                <div class="action__el__inner">voice speaks</div>
+              </div>
+              <div
+                class="action__el action__voice-recog"
+                v-bind:class="{ active: activeAction==='actionVoiceRecognition' }"
+                ref="actionVoiceRecog"
+              >
+                <div class="action__el__inner">voice-recognition</div>
+              </div>
+              <div
+                class="action__el action__request"
+                v-bind:class="{ active: activeAction==='actionRequest' }"
+                ref="actionRequest"
+              >
+                <div class="action__el__inner">request</div>
+              </div>
             </div>
           </div>
         </div>
@@ -46,10 +50,14 @@
         </div>
       </div>
     </div>
+    <select id="voice-select" style="display:none;"></select>
   </div>
 </template>
 
 <script>
+import Voice from "../utils/voice";
+import SpeechRecognition from "../utils/speechRecognition";
+
 export default {
   name: "smartvoice",
   props: {
@@ -57,15 +65,16 @@ export default {
   },
   data: () => {
     return {
-      activeAction: "actionVoiceSpeaks"
+      activeAction: ""
     };
   },
   mounted() {
     this.$nextTick(() => {
       // console.log(this.$refs);
       // console.log(this);
-      this.$data.activeAction = "actionVoiceRecognition";
-      this.$data.activeAction = "actionRequest";
+      // this.$data.activeAction = "actionVoiceSpeaks";
+      // this.$data.activeAction = "actionVoiceRecognition";
+      // this.$data.activeAction = "actionRequest";
       console.log(this.$data.activeAction);
       this.init();
     });
@@ -77,15 +86,52 @@ export default {
 
   methods: {
     init() {
-      // this.activeAction = "actionsVoiceSpeaks";
-      // this.activeActionClass = "action_el_active";
-    }
+      const speechRecognition = new SpeechRecognition({
+        onresultCallback: text => {
+          console.log("onresultCallback text", text);
+          this.$refs.inputContent.innerHTML = text;
+        },
+        onspeechendCallback: text => {
+          console.log("onspeechendCallback text", text);
+          this.$data.activeAction = "";
+        },
+        onsoundstartCallback: () => {
+          console.log("onsoundstartCallback");
+          // speechRecognition.start();
+          // this.$data.activeAction = "actionVoiceRecognition";
+        }
+      });
 
-    // actionSetActive() {
-    //   const dom = this$refs[this.activeAction];
-    //   const activ
-    //   dom
-    // }
+      speechRecognition.start();
+      this.$data.activeAction = "actionVoiceRecognition";
+      // this.voice = new Voice(() => {
+      //   // voice.cancel();
+      //   // voice.resume();
+      //   const onSpeakEndCallback = () => {
+      //     console.log("onSpeakEndCallback");
+      //     speechRecognition.start();
+      //   };
+      //   this.voiceSpeak("Hallo, was kann ich für Sie tun?", onSpeakEndCallback);
+      //   // console.log('voice.speak Hallo')
+      // });
+    },
+
+    voiceSpeak(text, onSpeakEndCallback) {
+      this.$data.activeAction = "actionVoiceSpeaks";
+      this.voice.cancel();
+      this.voice.resume();
+      this.voice.speak(text);
+      const checkVoice = () => {
+        if (!this.voice.synth.speaking) {
+          if (this.$data.activeAction === "actionVoiceSpeaks") {
+            this.$data.activeAction = "";
+          }
+          onSpeakEndCallback();
+          clearInterval(interval);
+        }
+      };
+      let interval = setInterval(checkVoice, 200);
+    }
   }
 };
 </script>
@@ -160,6 +206,16 @@ export default {
 .content__title__inner {
   position: relative;
 }
+.content__main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 90%;
+}
+
+.content__main-inner {
+  // height: 100%;
+}
 
 .input {
   width: 40%;
@@ -181,10 +237,13 @@ export default {
   justify-content: center;
   flex-direction: column;
 
-  height: 90%;
+  // height: 100%;
   // padding: 10px 0;
 
   // background: lightgrey;
+  .content__main-inner {
+    height: 100%;
+  }
 }
 
 .action__el {

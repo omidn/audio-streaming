@@ -1,8 +1,12 @@
 class SpeechRecognition {
 
     constructor(options) {
-        this.options = Object.assign({onResultCallback:{}}, options);
-        this.onResultCallback = this.options.onResultCallback;
+        this.options = Object.assign({
+            onresultCallback: {},
+            onspeechendCallback: {},
+            onsoundstartCallback: {}
+        }, options);
+        // this.onresultCallback = this.options.onresultCallback;
         this.resultText = '';
 
         try {
@@ -12,12 +16,10 @@ class SpeechRecognition {
             // If false, the recording will stop after a few seconds of silence.
             // When true, the silence period is longer (about 15 seconds),
             // allowing us to keep recording even when the user pauses.
-
-            this.recognition.continuous = false;
+            this.recognition.continuous = true;
             this.recognition.lang = 'de';
-            this.recognition.interimResults = true;
-        }
-        catch (e) {
+            this.recognition.interimResults = false;
+        } catch (e) {
             console.error(e);
         }
 
@@ -25,16 +27,21 @@ class SpeechRecognition {
             console.log('Voice recognition activated. Try speaking into the microphone.');
         }
 
-        this.recognition.onspeechend = ()=> {
+        this.recognition.onspeechend = () => {
             console.log('You were quiet for a while so voice recognition turned itself off.');
             this.options.onspeechendCallback(this.resultText);
         }
 
-        this.recognition.onerror = function (event) {
+        this.recognition.onerror = (event) => {
             if (event.error == 'no-speech') {
                 console.log('No speech was detected. Try again.');
             }
         }
+
+        this.recognition.onsoundstart = () => {
+            this.options.onsoundstartCallback();
+        }
+
 
         // This block is called every time the Speech APi captures a line.
         this.recognition.onresult = (event) => {
@@ -56,7 +63,7 @@ class SpeechRecognition {
             // var last = event.results.length - 1;
             // var color = event.results[last][0].transcript;
             this.resultText = noteContent;
-            this.options.onResultCallback(noteContent);
+            this.options.onresultCallback(noteContent);
 
         }
     }
