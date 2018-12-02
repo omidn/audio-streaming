@@ -4,10 +4,12 @@ class SpeechRecognition {
         this.options = Object.assign({
             onresultCallback: {},
             onspeechendCallback: {},
-            onsoundstartCallback: {}
+            onsoundstartCallback: {},
+            timeTillStopRecognition: 3000
         }, options);
-        // this.onresultCallback = this.options.onresultCallback;
+
         this.resultText = '';
+
 
         try {
             var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -16,9 +18,9 @@ class SpeechRecognition {
             // If false, the recording will stop after a few seconds of silence.
             // When true, the silence period is longer (about 15 seconds),
             // allowing us to keep recording even when the user pauses.
-            this.recognition.continuous = true;
+            this.recognition.continuous = false;
             this.recognition.lang = 'de';
-            this.recognition.interimResults = false;
+            this.recognition.interimResults = true;
         } catch (e) {
             console.error(e);
         }
@@ -28,8 +30,23 @@ class SpeechRecognition {
         }
 
         this.recognition.onspeechend = () => {
-            console.log('You were quiet for a while so voice recognition turned itself off.');
+            console.log('### You were quiet for a while so voice recognition turned itself off.');
             this.options.onspeechendCallback(this.resultText);
+        }
+
+        this.recognition.onend = () => {
+            console.log('### Speech recognition service disconnected');
+            const endDate = new Date();
+            let duration = (endDate.getTime() - this.startDate.getTime()) / 1000;
+            if (this.options.timeTillStopRecognition > duration) {
+                this.stop();
+            } else {
+                this.start();
+            }
+        }
+
+        this.recognition.onstop = () => {
+            console.log('Speech recognition service stopped');
         }
 
         this.recognition.onerror = (event) => {
@@ -39,12 +56,14 @@ class SpeechRecognition {
         }
 
         this.recognition.onsoundstart = () => {
+            console.log('Speech recognition onsoundstart');
             this.options.onsoundstartCallback();
         }
 
 
         // This block is called every time the Speech APi captures a line.
         this.recognition.onresult = (event) => {
+            console.log('Speech recognition onresult');
 
             // event is a SpeechRecognitionEvent object.
             // It holds all the lines we have captured so far.
@@ -64,15 +83,23 @@ class SpeechRecognition {
             // var color = event.results[last][0].transcript;
             this.resultText = noteContent;
             this.options.onresultCallback(noteContent);
-
+            this.startDate = new Date();
         }
     }
 
     start() {
+        console.log('####### Speech recognition start');
         this.recognition.start();
+        this.startDate = new Date();
+    }
+
+    stop() {
+        console.log('Speech recognition stop');
+        this.recognition.stop();
     }
 
     abort() {
+        console.log('Speech recognition abort');
         this.recognition.abort();
     }
 }

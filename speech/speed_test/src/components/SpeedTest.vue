@@ -58,6 +58,10 @@
 import Voice from "../utils/voice";
 import SpeechRecognition from "../utils/speechRecognition";
 
+import CommonVoiceInterfaceRESTAPI from "../utils/commonVoiceInterfaceRESTAPI";
+// import login from "./login";
+// login();
+
 export default {
   name: "smartvoice",
   props: {
@@ -86,14 +90,18 @@ export default {
 
   methods: {
     init() {
-      const speechRecognition = new SpeechRecognition({
+      this.cviAPI = new CommonVoiceInterfaceRESTAPI();
+
+      this.speechRecognition = new SpeechRecognition({
         onresultCallback: text => {
           console.log("onresultCallback text", text);
           this.$refs.inputContent.innerHTML = text;
         },
         onspeechendCallback: text => {
-          console.log("onspeechendCallback text", text);
-          this.$data.activeAction = "";
+          this.cviAPITextToText(text);
+          console.log(">>> onspeechendCallback text", text);
+          // this.$data.activeAction = "";
+          this.$data.activeAction = "actionRequest";
         },
         onsoundstartCallback: () => {
           console.log("onsoundstartCallback");
@@ -101,36 +109,62 @@ export default {
           // this.$data.activeAction = "actionVoiceRecognition";
         }
       });
+      this.speechRecognitionStart();
 
-      speechRecognition.start();
+      this.voice = new Voice(() => {
+        // const onSpeakEndCallback = () => {
+        //   console.log("onSpeakEndCallback");
+        //   speechRecognition.start();
+        // };<
+      });
+      // this.voiceSpeak("Hallo, was kann ich für Sie tun?", onSpeakEndCallback);
+      // console.log('voice.speak Hallo')
+    },
+
+    speechRecognitionStart() {
+      this.speechRecognition.start();
       this.$data.activeAction = "actionVoiceRecognition";
-      // this.voice = new Voice(() => {
-      //   // voice.cancel();
-      //   // voice.resume();
-      //   const onSpeakEndCallback = () => {
-      //     console.log("onSpeakEndCallback");
-      //     speechRecognition.start();
-      //   };
-      //   this.voiceSpeak("Hallo, was kann ich für Sie tun?", onSpeakEndCallback);
-      //   // console.log('voice.speak Hallo')
-      // });
     },
 
     voiceSpeak(text, onSpeakEndCallback) {
       this.$data.activeAction = "actionVoiceSpeaks";
-      this.voice.cancel();
-      this.voice.resume();
+
       this.voice.speak(text);
       const checkVoice = () => {
         if (!this.voice.synth.speaking) {
           if (this.$data.activeAction === "actionVoiceSpeaks") {
             this.$data.activeAction = "";
           }
-          onSpeakEndCallback();
           clearInterval(interval);
+          onSpeakEndCallback();
         }
       };
       let interval = setInterval(checkVoice, 200);
+    },
+
+    cviAPITextToText(textInput) {
+      const cviAPIProm = this.cviAPI.request("Text JSON", textInput);
+
+      cviAPIProm
+        .then(response => {
+          let text = response.data.text;
+          text = text.replace(/<[^>]+>/g, "");
+          this.$refs.outputContent.innerHTML = text;
+          console.log("output-text", text);
+          // onsoundstartCallback: () => {
+          //   console.log("onsoundstartCallback");
+          //   this.speechRecognitionStart();
+          // };
+          this.voiceSpeak(text, this.speechRecognitionStart);
+        })
+        .catch(err => {
+          console.log("ERROR", err);
+          this.voiceSpeak(
+            "Ich habe Dich leider nicht verstanden!",
+            this.speechRecognitionStart
+          );
+        })
+        .then(function() {});
     }
   }
 };
@@ -217,6 +251,11 @@ export default {
   // height: 100%;
 }
 
+.input,
+.output {
+  font-size: 22px;
+}
+
 .input {
   width: 40%;
   background: lightgreen;
@@ -265,7 +304,7 @@ export default {
       width: 100%;
       height: 100%;
       background: white;
-      // animation: blink 1500ms ease-in-out infinite;
+      animation: blink 1500ms ease-in-out infinite;
       border-radius: 4px;
       border: 2px solid red;
     }

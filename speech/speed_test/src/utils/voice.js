@@ -1,8 +1,8 @@
 export class Voice {
-    constructor( onReadyCallback ) {
+    constructor(onReadyCallback) {
         this.onReadyCallback = onReadyCallback;
         this.synth = window.speechSynthesis;
-        console.log( this.synth);
+        console.log(this.synth);
         this.voiceSelect = document.getElementById('voice-select');
         this.voices = [];
         // this.populateVoiceList();
@@ -13,27 +13,28 @@ export class Voice {
 
     populateVoiceList() {
         this.voices = this.synth.getVoices().sort(function (a, b) {
-            const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
-            if ( aname < bname ) return -1;
-            else if ( aname == bname ) return 0;
+            const aname = a.name.toUpperCase(),
+                bname = b.name.toUpperCase();
+            if (aname < bname) return -1;
+            else if (aname == bname) return 0;
             else return +1;
         });
         // console.log('this.voices', this.voices, this.synth);
         var selectedIndex = this.voiceSelect.selectedIndex < 0 ? 0 : this.voiceSelect.selectedIndex;
         this.voiceSelect.innerHTML = '';
-        for(let i = 0; i < this.voices.length ; i++) {
+        for (let i = 0; i < this.voices.length; i++) {
             var option = document.createElement('option');
             // console.log('this.voices[i].name ',this.voices[i].name );
             option.textContent = this.voices[i].name + ' (' + this.voices[i].lang + ')';
 
-            if(this.voices[i].default) {
+            if (this.voices[i].default) {
                 option.textContent += ' -- DEFAULT';
             }
 
             option.setAttribute('data-lang', this.voices[i].lang);
             option.setAttribute('data-name', this.voices[i].name);
             option.setAttribute('data-index', i);
-            if (this.voices[i].lang ==='de-DE') {
+            if (this.voices[i].lang === 'de-DE') {
                 selectedIndex = i;
 
             }
@@ -48,13 +49,15 @@ export class Voice {
 
 
 
-    speak(text){
+    speak(text) {
 
         if (this.synth.speaking) {
             console.error('speechSynthesis.speaking');
             return;
         }
         if (text.value !== '') {
+            this.synth.cancel();
+            this.synth.resume();
             var utterThis = new SpeechSynthesisUtterance(text);
             utterThis.onend = function (event) {
                 console.log('SpeechSynthesisUtterance.onend', event);
