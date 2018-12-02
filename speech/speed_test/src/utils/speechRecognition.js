@@ -5,6 +5,7 @@ class SpeechRecognition {
             onresultCallback: {},
             onspeechendCallback: {},
             onsoundstartCallback: {},
+            onstopCallback: {},
             timeTillStopRecognition: 3000
         }, options);
 
@@ -40,6 +41,7 @@ class SpeechRecognition {
             let duration = (endDate.getTime() - this.startDate.getTime()) / 1000;
             if (this.options.timeTillStopRecognition > duration) {
                 this.stop();
+                this.options.onstopCallback();
             } else {
                 this.start();
             }

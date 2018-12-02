@@ -37,7 +37,12 @@
                 v-bind:class="{ active: activeAction==='actionRequest' }"
                 ref="actionRequest"
               >
-                <div class="action__el__inner">request</div>
+                <div class="action__el__inner">
+                  request
+                  <span class="action__reques-duration">
+                    <span ref="actionRequestDuration">0.0</span>sec
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -107,6 +112,9 @@ export default {
           console.log("onsoundstartCallback");
           // speechRecognition.start();
           // this.$data.activeAction = "actionVoiceRecognition";
+        },
+        onstopCallback: () => {
+          this.$data.activeAction = "";
         }
       });
       this.speechRecognitionStart();
@@ -144,6 +152,7 @@ export default {
 
     cviAPITextToText(textInput) {
       const cviAPIProm = this.cviAPI.request("Text JSON", textInput);
+      const startDate = new Date();
 
       cviAPIProm
         .then(response => {
@@ -159,12 +168,16 @@ export default {
         })
         .catch(err => {
           console.log("ERROR", err);
-          this.voiceSpeak(
-            "Ich habe Dich leider nicht verstanden!",
-            this.speechRecognitionStart
-          );
+          const text = "Ich habe Dich leider nicht verstanden!";
+          this.$refs.outputContent.innerHTML = text;
+          this.voiceSpeak(text, this.speechRecognitionStart);
         })
-        .then(function() {});
+        .then(() => {
+          const endDate = new Date();
+          const duration = (endDate.getTime() - startDate.getTime()) / 1000;
+
+          this.$refs.actionRequestDuration.innerHTML = duration;
+        });
     }
   }
 };
@@ -238,6 +251,7 @@ export default {
 }
 
 .content__title__inner {
+  font-size: 25px;
   position: relative;
 }
 .content__main {
@@ -253,7 +267,8 @@ export default {
 
 .input,
 .output {
-  font-size: 22px;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .input {
@@ -313,6 +328,14 @@ export default {
 
 .action__el__inner {
   position: relative;
+}
+
+.action__reques-duration {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: lightcyan;
 }
 
 @keyframes blink {
