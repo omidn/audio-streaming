@@ -47,7 +47,8 @@ class CommonVoiceInterfaceRESTAPI {
                 headers: {
                     ...headerAuthorization,
                     ...{
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'responseType': 'blob'
                     },
                 },
                 url: urlBase + 'dm/api/v1/invoke/text/multipart' + apikey

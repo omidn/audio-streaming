@@ -22,10 +22,10 @@
                                 <div class="action__el__inner">voice speaks</div>
                             </div>
                             <div class="action__el action__voice-recog"
-                                 v-bind:class="{ active: activeAction==='actionVoiceRecognition' }"
+                                 v-bind:class="{ active: activeAction==='actionVoiceRecognition' || activeAction ==='actionVoiceRecordingOn' }"
                                  v-on:click="actionVoiceRecognitionHandler"
                             >
-                                <div class="action__el__inner">voice-recognition</div>
+                                <div class="action__el__inner">{{ voiceRecognition }}</div>
                             </div>
                             <div class="action__el action__request"
                                  v-bind:class="{ active: activeAction==='actionRequest' }">
@@ -55,7 +55,11 @@
     // import login from "./login";
     // login();
 
-    // import recorderUse from './recorderUse';
+    import RecorderUse from './recorderUse';
+
+    var multipart = require('parse-multipart');
+    // import { parse } from 'multipart-raw-parser'
+
 
     export default {
         name: "smartvoice",
@@ -67,12 +71,13 @@
                 title: [
                     'Smart Voice API-Test (with browser speech recognition & browser voice)',
                     'Smart Voice API-Test (with browser speech recognition & API voice)',
-                    'Smart Voice API-Test (with API speech recognition & API voice)'
+                    'Smart Voice API-Test (with API speech recognition & browser voice)'
                 ],
                 nr: 1,
                 activeAction: '',
                 inputContent: 'input-content',
                 outputContent: 'output-content',
+                voiceRecognition: 'voice-recognition',
                 actionRequestDuration: '0.0'
             };
         },
@@ -85,16 +90,20 @@
                 // this.$data.activeAction = "actionRequest";
                 console.log(this.$data.activeAction);
 
-                var nr = parseInt(window.location.search.slice(1), 10);
+                this.nr = parseInt(window.location.search.slice(1), 10);
                 this.cviAPI = new CommonVoiceInterfaceRESTAPI();
 
 
-                switch (nr) {
+                switch (this.nr) {
                     case 1:
                         this.case1BrowserRecognitionBrowserVoice();
                         break;
                     case 2:
                         this.case2BrowserRecognitionAPIVoice();
+                        break;
+                    case 3:
+                        this.$data.voiceRecognition = 'record-voice';
+                        this.case3APIRecognitionBrowserVoice();
                         break;
                 }
             });
@@ -143,22 +152,51 @@
             },
 
             case2BrowserRecognitionAPIVoice() {
-
                 this.cviAPITextToAudio('Wie ist das Wetter in Frankfurt?');
+
+
+            },
+
+            case3APIRecognitionBrowserVoice() {
+                // const audio ='';
+                // this.cviAPIAudioToJSON(audio);
+                // recorderUse.startRecording();
+                this.recorderUse = new RecorderUse();
+                console.log(this.recorderUse);
             },
 
 
 
             actionVoiceRecognitionHandler() {
-                console.log('actionVoiceRecognitionHandler this.speechRecognition.active', this.speechRecognition.active);
-                if (this.speechRecognition.active) {
-                    this.speechRecognition.disabled = true;
-                    this.speechRecognitionStop();
+                if (this.nr === 1) {
+                    console.log('actionVoiceRecognitionHandler this.speechRecognition.active', this.speechRecognition.active);
+                    if (this.speechRecognition.active) {
+                        this.speechRecognition.disabled = true;
+                        this.speechRecognitionStop();
+                    } else {
+                        this.speechRecognition.disabled = false;
+                        this.speechRecognitionStart();
+                    }
                 } else {
-                    this.speechRecognition.disabled = false;
-                    this.speechRecognitionStart();
+                    if (this.nr===3) {
+                        if ( !this.recorderUse.recording ) {
+                            this.$data.activeAction = "actionVoiceRecordingOn";
+                        } else {
+                            this.$data.activeAction = "actionVoiceRecordingOff";
+                        }
+                    }
+
                 }
             },
+
+            startRecording() {
+
+            },
+
+            stopRecording() {
+
+            },
+
 
             speechRecognitionStart() {
                 this.speechRecognitionDisabled = false;
@@ -219,7 +257,50 @@
                     });
             },
 
+            cviAudioToJSON(textInput) {
+                const cviAPIProm = this.cviAPI.request("Text JSON", textInput);
+                const startDate = new Date();
+
+                cviAPIProm
+                    .then(response => {
+                        let text = response.data.text;
+                        text = text.replace(/<[^>]+>/g, "");
+                        this.$data.outputContent = text;
+                        console.log("output-text", text);
+                        this.voiceSpeak(text, this.speechRecognitionStart);
+                    })
+                    .catch(err => {
+                        console.log("ERROR", err);
+                        const text = "Ich habe Dich leider nicht verstanden!";
+                        this.$data.outputContent = text;
+                        this.voiceSpeak(text, this.speechRecognitionStart);
+                    })
+                    .then(() => {
+                        const endDate = new Date();
+                        const duration = (endDate.getTime() - startDate.getTime()) / 1000;
+                        this.$data.actionRequestDuration = duration;
+                    });
+            },
+
             cviAPITextToAudio(textInput) {
+
+                // console.log(multipart.DemoData(), textInput);
+                // // var body = response.data;
+                // var body = multipart.DemoData();
+                // var boundary = "--KIjp6OAB_uP855gbxNVVA8RYOAX7eB";
+                // boundary = "----WebKitFormBoundaryvef1fLxmoUdYZWXp";
+                // boundary = "----WebKitFormBoundaryvef1fLxmoUdYZWXp";
+                // var parts = multipart.Parse(body,boundary);
+                // console.log('parts', parts);
+                //
+                // for(var i=0;i<parts.length;i++){
+                //     var part = parts[i];
+                //     // will be:
+                //     // { filename: 'A.txt', type: 'text/plain',
+                //     //		data: <Buffer 41 41 41 41 42 42 42 42> }
+                //     console.log('part',part);
+                // }
+
                 const cviAPIProm = this.cviAPI.request('Text Multipart', textInput);
                 const startDate = new Date();
 
@@ -232,7 +313,62 @@
                         // console.log( 'audioBlob', audioBlob );
                         // console.log("output-text", text);
                         // this.voiceSpeak(text, this.speechRecognitionStart);
-                        console.log('response.data', response.data );
+                        console.log('response.data', response, typeof response.data );
+                        // const multipartDataArray = parse(response.data, response.headers.get('Content-Type'))
+                        // console.log('multipartDataArray',multipartDataArray);
+                        // //
+                        //
+                        //
+                        //
+                        var body = response.data;
+                        // // var n = body.indexOf('Content-Disposition');
+                        // // var boundary = body.substring(2, n);
+                        //     // var boundary = "--KIjp6OAB_uP855gbxNVVA8RYOAX7eB";
+                        // // boundary = "KIjp6OAB_uP855gbxNVVA8RYOAX7eB";
+                        var boundary = multipart.getBoundary(response.headers['content-type']);
+                        var parts = multipart.Parse(body,boundary);
+                        console.log('parts', parts, boundary);
+
+                        // for(var i=0;i<parts.length;i++){
+                        //     var part = parts[i];
+                        //     // will be:
+                        //     // { filename: 'A.txt', type: 'text/plain',
+                        //     //		data: <Buffer 41 41 41 41 42 42 42 42> }
+                        //     console.log('part',part);
+                        // }
+
+
+                        // const fileReader = new FileReader();
+                        // fileReader.onload = function (evt) {
+                        //     var result = evt.target.result;
+                        //     console.log('result', result);
+                        // };
+                        // Load blob as Data URL
+                        // fileReader.readAsBinaryString(response.data);
+
+                        // const audioBlob = new Blob(response.data);
+                        // console.log( 'audioBlob', audioBlob )
+
+                        // var decodedData = window.atob(response.data);
+                        // console.log('decodedData',decodedData);
+
+                        // var myBlob = new Blob(response.data, {type : "text/plain"});
+                        // console.log('myBlob', myBlob);
+                        // const audioBlob = new Blob(response.data);
+                        // console.log( 'audioBlob', audioBlob );
+                        // const audioUrl = URL.createObjectURL(audioBlob);
+                        // const audio = new Audio(audioUrl);
+                        // audio.play();
+                        // const audioContext = new AudioContext();
+                        // let startTime = 0;
+                        // audioContext.decodeAudioData(response.data, function(buffer) {
+                        //     var source = audioContext.createBufferSource();
+                        //     source.buffer = buffer;
+                        //     source.connect(audioContext.destination);
+                        //
+                        //     source.start(startTime);
+                        //     startTime += buffer.duration;
+                        // });
                     })
                     .catch(err => {
                         console.log("ERROR", err);
