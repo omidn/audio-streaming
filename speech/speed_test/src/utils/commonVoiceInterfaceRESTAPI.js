@@ -42,7 +42,17 @@ class CommonVoiceInterfaceRESTAPI {
                     },
                 },
                 url: urlBase + 'dm/api/v1/invoke/audio/json' + apikey
+            },
+            'Text Multipart': {
+                headers: {
+                    ...headerAuthorization,
+                    ...{
+                        'Content-Type': 'application/json'
+                    },
+                },
+                url: urlBase + 'dm/api/v1/invoke/text/multipart' + apikey
             }
+
 
         }
     }

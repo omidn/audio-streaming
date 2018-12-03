@@ -55,6 +55,8 @@
     // import login from "./login";
     // login();
 
+    // import recorderUse from './recorderUse';
+
     export default {
         name: "smartvoice",
         props: {
@@ -64,7 +66,8 @@
             return {
                 title: [
                     'Smart Voice API-Test (with browser speech recognition & browser voice)',
-                    'Smart Voice API-Test (with browser speech recognition & CVI-API voice)'
+                    'Smart Voice API-Test (with browser speech recognition & API voice)',
+                    'Smart Voice API-Test (with API speech recognition & API voice)'
                 ],
                 nr: 1,
                 activeAction: '',
@@ -83,20 +86,26 @@
                 console.log(this.$data.activeAction);
 
                 var nr = parseInt(window.location.search.slice(1), 10);
+                this.cviAPI = new CommonVoiceInterfaceRESTAPI();
+
 
                 switch (nr) {
                     case 1:
-                        this.init1();
+                        this.case1BrowserRecognitionBrowserVoice();
+                        break;
+                    case 2:
+                        this.case2BrowserRecognitionAPIVoice();
                         break;
                 }
             });
         },
 
         methods: {
-            init1() {
-                this.cviAPI = new CommonVoiceInterfaceRESTAPI();
 
+            case1BrowserRecognitionBrowserVoice() {
                 let textPrev = '';
+
+                this.speechRecognitionDisabled = false;
 
                 this.speechRecognition = new SpeechRecognition({
                     onresultCallback: (text, duration) => {
@@ -105,14 +114,17 @@
 
                     },
                     onspeechendCallback: (text, duration) => {
-                          if ( text !== '' && text!== 'text-input' && text !== textPrev) {
-                            this.cviAPITextToText(text);
-                            console.log('>>> onspeechendCallback text:',text,' duration:', duration);
-                            this.$data.activeAction = "actionRequest";
-                        } else {
-                            console.log('>>>>>>>> norequest text', text);
+                        if ( !this.speechRecognitionDisabled ) {
+                            if ( text !== '' && text!== 'text-input' && text !== textPrev) {
+                                this.cviAPITextToText(text);
+                                console.log('>>> onspeechendCallback text:',text,' duration:', duration);
+                                this.$data.activeAction = "actionRequest";
+                            } else {
+                                console.log('>>>>>>>> norequest text', text);
+                            }
+                            textPrev = text;
                         }
-                        textPrev = text;
+
                     },
                     onsoundstartCallback: () => {
                         console.log("onsoundstartCallback");
@@ -127,18 +139,30 @@
                 this.voice = new Voice(() => {
                 });
 
+
             },
+
+            case2BrowserRecognitionAPIVoice() {
+
+                this.cviAPITextToAudio('Wie ist das Wetter in Frankfurt?');
+            },
+
+
 
             actionVoiceRecognitionHandler() {
                 console.log('actionVoiceRecognitionHandler this.speechRecognition.active', this.speechRecognition.active);
                 if (this.speechRecognition.active) {
+                    this.speechRecognition.disabled = true;
                     this.speechRecognitionStop();
                 } else {
+                    this.speechRecognition.disabled = false;
                     this.speechRecognitionStart();
                 }
             },
 
             speechRecognitionStart() {
+                this.speechRecognitionDisabled = false;
+                this.speechRecognition.disabled = false;
                 this.speechRecognition.start();
                 this.$data.activeAction = "actionVoiceRecognition";
             },
@@ -165,6 +189,9 @@
             },
 
             cviAPITextToText(textInput) {
+                this.speechRecognitionStop();
+                this.speechRecognitionDisabled = true;
+                this.speechRecognition.disabled = true;
                 const cviAPIProm = this.cviAPI.request("Text JSON", textInput);
                 const startDate = new Date();
 
@@ -174,13 +201,44 @@
                         text = text.replace(/<[^>]+>/g, "");
                         this.$data.outputContent = text;
                         console.log("output-text", text);
+                        this.speechRecognitionStop();
                         this.voiceSpeak(text, this.speechRecognitionStart);
                     })
                     .catch(err => {
                         console.log("ERROR", err);
                         const text = "Ich habe Dich leider nicht verstanden!";
                         this.$data.outputContent = text;
+                        this.speechRecognitionStop();
                         this.voiceSpeak(text, this.speechRecognitionStart);
+                    })
+                    .then(() => {
+                        const endDate = new Date();
+                        const duration = (endDate.getTime() - startDate.getTime()) / 1000;
+
+                        this.$data.actionRequestDuration = duration;
+                    });
+            },
+
+            cviAPITextToAudio(textInput) {
+                const cviAPIProm = this.cviAPI.request('Text Multipart', textInput);
+                const startDate = new Date();
+
+                cviAPIProm
+                    .then(response => {
+                        // let text = response.data.text;
+                        // text = text.replace(/<[^>]+>/g, "");
+                        // this.$data.outputContent = text;
+                        // const audioBlob = new Blob(response.data);
+                        // console.log( 'audioBlob', audioBlob );
+                        // console.log("output-text", text);
+                        // this.voiceSpeak(text, this.speechRecognitionStart);
+                        console.log('response.data', response.data );
+                    })
+                    .catch(err => {
+                        console.log("ERROR", err);
+                        const text = "Ich habe Dich leider nicht verstanden!";
+                        this.$data.outputContent = text;
+                        // this.voiceSpeak(text, this.speechRecognitionStart);
                     })
                     .then(() => {
                         const endDate = new Date();

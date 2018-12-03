@@ -22,6 +22,7 @@ class SpeechRecognition {
             this.recognition.continuous = false;
             this.recognition.lang = 'de';
             this.recognition.interimResults = true;
+            this.disabled = false;
         } catch (e) {
             console.error(e);
         }
@@ -97,11 +98,13 @@ class SpeechRecognition {
     }
 
     start() {
-        console.log('####### Speech recognition start');
-        if (!this.active) {
-            this.recognition.start();
-            this.startDate = new Date();
-            this.active = true;
+        if ( !this.disabled ) {
+            console.log('####### Speech recognition start');
+            if (!this.active) {
+                this.recognition.start();
+                this.startDate = new Date();
+                this.active = true;
+            }
         }
 
     }
