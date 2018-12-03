@@ -6,7 +6,7 @@ class SpeechRecognition {
             onspeechendCallback: {},
             onsoundstartCallback: {},
             onstopCallback: {},
-            timeTillStopRecognition: 3000
+            timeTillStopRecognition: 5000
         }, options);
 
         this.resultText = '';
@@ -32,14 +32,19 @@ class SpeechRecognition {
 
         this.recognition.onspeechend = () => {
             console.log('### You were quiet for a while so voice recognition turned itself off.');
-            this.options.onspeechendCallback(this.resultText);
+            const endDate = new Date();
+            let duration = (endDate.getTime() - this.startDate.getTime());
+            this.options.onspeechendCallback(this.resultText, duration);
         }
 
         this.recognition.onend = () => {
             console.log('### Speech recognition service disconnected');
             const endDate = new Date();
             let duration = (endDate.getTime() - this.startDate.getTime()) / 1000;
-            if (this.options.timeTillStopRecognition > duration) {
+            console.log('duration',duration, 'timeTillStopRecognition',this.options.timeTillStopRecognition);
+            this.active = false;
+            if (duration >= this.options.timeTillStopRecognition ) {
+
                 this.stop();
                 this.options.onstopCallback();
             } else {
@@ -84,25 +89,33 @@ class SpeechRecognition {
             // var last = event.results.length - 1;
             // var color = event.results[last][0].transcript;
             this.resultText = noteContent;
-            this.options.onresultCallback(noteContent);
+            const endDate = new Date();
+            let duration = (endDate.getTime() - this.startDate.getTime());
+            this.options.onresultCallback(noteContent, duration);
             this.startDate = new Date();
         }
     }
 
     start() {
         console.log('####### Speech recognition start');
-        this.recognition.start();
-        this.startDate = new Date();
+        if (!this.active) {
+            this.recognition.start();
+            this.startDate = new Date();
+            this.active = true;
+        }
+
     }
 
     stop() {
         console.log('Speech recognition stop');
         this.recognition.stop();
+        this.active = false;
     }
 
     abort() {
         console.log('Speech recognition abort');
         this.recognition.abort();
+        this.active = false;
     }
 }
 
