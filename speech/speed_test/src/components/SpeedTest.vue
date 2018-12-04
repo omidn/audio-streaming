@@ -44,6 +44,20 @@
             </div>
         </div>
         <select id="voice-select" style="display:none;"></select>
+
+
+        <button id="audio" style="height:100px;">PLAY</button>
+        <!--<audio controls style="height:100px;">-->
+
+            <!--<source id="audiosrc" src="/dummy_data/audio/witz.wav" type="audio/wav">-->
+
+        <!--</audio>-->
+
+        <!--<audio id="audio2" controls style="height:100px;">-->
+
+
+
+        <!--</audio>-->
     </div>
 </template>
 
@@ -106,14 +120,14 @@
                         });
                         break;
                     case 2:
-                        caseBrowserRecognitionAPIVoice.call(this);
-                        break;
-                    case 3:
                         this.$data.voiceRecognition = 'record-voice';
                         this.recorderUse = new RecorderUse(this);
                         this.voice = new Voice(() => {
                         });
                         // caseAPIRecognitionBrowserVoice.call(this);
+                        break;
+                    case 3:
+                        caseBrowserRecognitionAPIVoice.call(this);
                         break;
                 }
             });

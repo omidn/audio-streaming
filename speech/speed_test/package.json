@@ -10,9 +10,12 @@
   "dependencies": {
     "axios": "^0.18.0",
     "inline-worker": "^1.1.0",
+    "js-base64": "^2.4.9",
     "multipart-raw-parser": "^0.6.2",
     "parse-multipart": "^1.0.4",
-    "vue": "^2.5.17"
+    "save-file": "^2.1.1",
+    "vue": "^2.5.17",
+    "wav-file-info": "0.0.8"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",

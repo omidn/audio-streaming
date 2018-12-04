@@ -65,3 +65,13 @@ https://www.ghacks.net/2018/11/21/google-chrome-blocking-speech-synthesis-api-au
 http://p5js.org/reference/#/p5.AudioIn
 https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
 https://medium.com/cleversonder/all-you-need-to-know-about-the-web-audio-api-3df170559378
+
+
+Content-Disposition: form-data; name="audio"
+Content-Type: audio/l16;rate=16000
+Content-Encoding →gzip
+
+Content-Type   multipart/form-data; boundary=FqsROYWeL18_I8GAfSEFlKsZ2dINgApyVdYs;charset=UTF-8
+Transfer-Encoding →chunked   
+
+multipart/form-data audio response play

@@ -36,4 +36,11 @@ body {
   text-align: center;
   color: #2c3e50;
 }
+  audio {
+    height: 100px;
+    position: absolute;
+    width: 500px;
+    left: 0;
+    top: 0;
+  }
 </style>
