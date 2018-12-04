@@ -14,8 +14,8 @@ class CommonVoiceInterfaceRESTAPI {
         const urlBase = 'https://skill-edge.smartvoicehub.de/cvi/';
         const headerAuthorization = {
             'Authorization': 'Bearer ' +
-                'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwb2MtdGVzdC11c2VyIiwiYXVkIjpbInN2aF9iYWNrZW5kIiwiY3ZpX2NvcmUiLCJ1c2VyX21hbmFnZW1lbnQiLCJldmVudF9oaXN0b3J5Il0sInRyYWNpbmciOmZhbHNlLCJuYmYiOjE1NDM4MjYxNTksInByb2ZpbGUiOiJEZWZhdWx0IiwidGVzdGluZyI6ZmFsc2UsImlzcyI6InVzZXJfbWFuYWdlbWVudCIsImV4cCI6MTU0MzkxMjU2NCwibG9jYWxlIjoiZGUiLCJpYXQiOjE1NDM4MjYxNjQsInRlbmFudCI6InNtYXJ0aHViX251YW5jZSJ9.PymNhs8cawqMVptM7rNHJ0d-asK4gy4P6afPcK5PXqw'
-         };
+                'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwb2MtdGVzdC11c2VyIiwiYXVkIjpbInN2aF9iYWNrZW5kIiwiY3ZpX2NvcmUiLCJ1c2VyX21hbmFnZW1lbnQiLCJldmVudF9oaXN0b3J5Il0sInRyYWNpbmciOmZhbHNlLCJuYmYiOjE1NDM5MTA4NjYsInByb2ZpbGUiOiJEZWZhdWx0IiwidGVzdGluZyI6ZmFsc2UsImlzcyI6InVzZXJfbWFuYWdlbWVudCIsImV4cCI6MTU0Mzk5NzI3MSwibG9jYWxlIjoiZGUiLCJpYXQiOjE1NDM5MTA4NzEsInRlbmFudCI6InNtYXJ0aHViX251YW5jZSJ9.F3q8Sb_zG4XqNoKbr4zGgeNO1A5jY85-r5BrsCyR8PA'
+          };
         const apikey = '?apikey=b507d7ad-9e14-4a26-a3b5-0cc4ec2a2da9';
 
         this.requestConfig = {

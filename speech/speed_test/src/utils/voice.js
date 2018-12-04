@@ -2,7 +2,7 @@ export class Voice {
     constructor(onReadyCallback) {
         this.onReadyCallback = onReadyCallback;
         this.synth = window.speechSynthesis;
-        console.log(this.synth);
+        // console.log(this.synth);
         this.voiceSelect = document.getElementById('voice-select');
         this.voices = [];
         // this.populateVoiceList();
@@ -48,6 +48,9 @@ export class Voice {
     }
 
 
+    // getTextArray(text) {
+    //
+    // },
 
     speak(text) {
 

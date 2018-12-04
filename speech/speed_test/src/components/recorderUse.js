@@ -1,5 +1,6 @@
 import Recorder from '../vendor/recorder';
 import CommonVoiceInterfaceRESTAPI from "../utils/commonVoiceInterfaceRESTAPI";
+// import Voice from "../utils/voice";
 
 // Audio format must be
 // - Format: wav
@@ -8,14 +9,22 @@ import CommonVoiceInterfaceRESTAPI from "../utils/commonVoiceInterfaceRESTAPI";
 // - Audio channels: mono
 
 export class RecorderUse {
-    recording = false;
-    gumStream = null; 						//stream from getUserMedia()
-    rec = null; 							//Recorder.js object
-    input = null; 							//MediaStreamAudioSourceNode we'll be recording
+
+
+    constructor(thisMain) {
+        this.recording = false;
+        this.gumStream = null; 						//stream from getUserMedia()
+        this.rec = null; 							//Recorder.js object
+        this.input = null; 							//MediaStreamAudioSourceNode we'll be recording
 
 // shim for AudioContext when it's not avb.
-    AudioContext = window.AudioContext || window.webkitAudioContext;
-    audioContext = null//audio context to help us record
+//         this.AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.audioContext = null//audio context to help us record
+
+        this.thisMain = thisMain;
+        // this.voice = new Voice(() => {
+        // });
+    }
 
 
     startRecording() {
@@ -54,14 +63,14 @@ export class RecorderUse {
                 Recording 2 channels  will double the file size
             */
             // eslint-disable-next-line
-            this.rec = new Recorder(input, {numChannels: 1})
+            this.rec = new Recorder(this.input, {numChannels: 1})
 
             //start the recording process
             this.rec.record();
 
             console.log("Recording started");
 
-        }).catch(function (err) {
+        }.bind(this)).catch(function (err) {
             console.log('err', err);
         });
     }
@@ -77,7 +86,7 @@ export class RecorderUse {
         //stop microphone access
         this.gumStream.getAudioTracks()[0].stop();
 
-
+        const startDate = new Date();
 
         var promise = new Promise((resolve, reject)=> {
             //create the wav blob and pass it on to createDownloadLink
@@ -96,22 +105,24 @@ export class RecorderUse {
                     // const startDate = new Date();
                     const cviAPIProm = cviAPI.request(requestName, requestData);
 
-                    cviAPIProm.then(response => {
-                        // textOutputDom.innerHTML = response.data.text;
-                        // textOutputDom.style = 'color:green';
+                    cviAPIProm.then(function(response){
+                        let text = response.data.text;
+                        text = text.replace(/<[^>]+>/g, "");
+                        this.thisMain.$data.outputContent = text;
+                        console.log("output-text", text);
                         resolve(response);
-                        console.log(response);
-                    }).catch(err => {
+                        this.thisMain.voiceSpeak(text, ()=>{});
+                        // console.log(response);
+                    }.bind(this)).catch(err => {
                             console.log('ERROR', requestName, err);
                             reject(err);
                         }
                     ).then(function () {
-                        // const endDate = new Date();
-                        // let duration = endDate.getTime() - startDate.getTime();
-                        // let time = duration / 1000;
-                        // timerDom.innerHTML = time;
-                        // timerDom.style = 'color:green';
-                    });
+                        const endDate = new Date();
+                        const duration = (endDate.getTime() - startDate.getTime()) / 1000;
+
+                        this.thisMain .$data.actionRequestDuration = duration;
+                    }.bind(this));
                 })();
             });
         });
