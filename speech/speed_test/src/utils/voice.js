@@ -52,6 +52,8 @@ export class Voice {
     //
     // },
 
+
+    // !!!chrome has a limit for the length of text to be spoken (Probably 212 chars)
     speak(text) {
 
         if (this.synth.speaking) {

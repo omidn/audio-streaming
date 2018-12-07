@@ -44,20 +44,6 @@
             </div>
         </div>
         <select id="voice-select" style="display:none;"></select>
-
-
-        <button id="audio" style="height:100px;">PLAY</button>
-        <!--<audio controls style="height:100px;">-->
-
-            <!--<source id="audiosrc" src="/dummy_data/audio/witz.wav" type="audio/wav">-->
-
-        <!--</audio>-->
-
-        <!--<audio id="audio2" controls style="height:100px;">-->
-
-
-
-        <!--</audio>-->
     </div>
 </template>
 
@@ -78,7 +64,7 @@
 
     import caseBrowserRecognitionBrowserVoice from './caseBrowserRecognitionBrowserVoice';
     import caseBrowserRecognitionAPIVoice from './caseBrowserRecognitionAPIVoice';
-    // import caseAPIRecognitionBrowserVoice from './caseAPIRecognitionBrowserVoice';
+    import caseAPIRecognitionBrowserVoice from './caseAPIRecognitionBrowserVoice';
 
     export default {
         name: "smartvoice",
@@ -122,9 +108,22 @@
                     case 2:
                         this.$data.voiceRecognition = 'record-voice';
                         this.recorderUse = new RecorderUse(this);
-                        this.voice = new Voice(() => {
-                        });
-                        // caseAPIRecognitionBrowserVoice.call(this);
+                        // this.voice = new Voice(() => {
+                        //     let text='OK, Rewe übernimmt. Das Rezept des Tages für dich ist\nSüßkartoffelgulasch mit frischen Cranberries. Für dieses Gericht brauchst du circa 45 Minuten und es ist einfach zu kochen. Was brauchst du: die Zutaten oder die Zubereitung?';
+                        //     console.log(text.length);
+                        //     const textSplit= text.split(' ');
+                        //     console.log(1, textSplit);
+                        //     const maxChars = 212;
+                        //
+                        //     // text='';
+                        //     // for (var i=0;i<18;i++) {
+                        //     //     text+='du ich ';
+                        //     // }
+                        //     // text = '';
+                        //     this.voiceSpeak(text, ()=>{});
+                        // });
+
+                        caseAPIRecognitionBrowserVoice.call(this);
                         break;
                     case 3:
                         caseBrowserRecognitionAPIVoice.call(this);
