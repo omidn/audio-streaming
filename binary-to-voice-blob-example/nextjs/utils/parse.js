@@ -1,5 +1,5 @@
 const LINE_BREAK = '\n';
-const multipart = require('parse-multipart');
+// const multipart = require('parse-multipart');
 
 export const stringify = (bytes) => {
   let str = '';
@@ -7,6 +7,19 @@ export const stringify = (bytes) => {
     str += String.fromCharCode(bytes[i]);
   }
   return str;
+}
+
+export const read_to_end = async (reader) => {
+  let lines = [];
+  while (true) {
+    const { value, done }  = await reader.read();
+    if (done) {
+      break;
+    } else {
+      lines = lines.concat(break_by_line(value));
+    }
+  }
+  return lines;
 }
 
 export const break_by_line = (value) => {
@@ -24,6 +37,7 @@ export const break_by_line = (value) => {
   return lines;
 }
 
+/// dumb way of parsing the response
 export const parse = (text) => {
 	const delim = text.split(LINE_BREAK)[0].substr(2);
 	const parts = text.split(delim).slice(1, 3);
@@ -41,7 +55,8 @@ export const parse = (text) => {
 	}
 
   return new Uint8Array(bytes);
-  
+  /// first attempt: this usually works with base64 or
+  ///                binary encoded data but is not the case here
 	// const blob = new Blob([new Uint8Array(bytes)], { type: 'audio/wav' });
 	// console.log('blob', blob);
 	// return blob; 
