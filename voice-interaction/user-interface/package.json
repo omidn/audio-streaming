@@ -10,13 +10,21 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.7.0",
+    "storybook": "^1.0.0"
+  },
   "devDependencies": {
-    "@storybook/react": "^4.1.7",
+    "@babel/core": "^7.2.2",
     "@storybook/addon-actions": "^4.1.7",
     "@storybook/addon-links": "^4.1.7",
     "@storybook/addons": "^4.1.7",
-    "@babel/core": "^7.2.2",
-    "babel-loader": "^8.0.5"
+    "@storybook/react": "^4.1.7",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.4"
   }
 }

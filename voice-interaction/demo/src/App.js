@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import ii from 'sound-api';
 import './App.css';
 
+console.log('lib', ii);
 class App extends Component {
   render() {
     return (
