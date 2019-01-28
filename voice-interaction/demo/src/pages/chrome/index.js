@@ -25,14 +25,14 @@ export default compose(
   lifecycle({
     componentDidMount() {
       const { results, onSetResults, setRecorder } = this.props;
-      console.log('res', results);
-      const recorder = api({
+      const recorder = api.webSpeechApi({
         ...options,
         onResult: (res) => {
           results.push({ text: res[0].transcript, conf: res[0].confidence });
           onSetResults(results);
         },
       });
+      
       setRecorder(recorder);
     }
   }),

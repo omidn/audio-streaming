@@ -24,5 +24,10 @@
 
 ** D) Make a TechTalk out of it
 * todo list
-** TODO read the 
+** TODO read the  
+* notes
+** microsoft has its own streaming API, the same as google cloud's
+** socket.io is a mucsh slower solution in comparision with node's raw sockets over tcp (~1/4 performance)
+*** 
+
     

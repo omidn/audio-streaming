@@ -24,7 +24,7 @@ const Root = ({ recorder, results }) => {
     <div className={styles.App}>
       <AppBar position="static">
         <Toolbar className={styles.toolbar}>
-          Built-in chrome example          
+          Built-in chrome example
         </Toolbar>
       </AppBar>
       <Router>

@@ -1,11 +1,7 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-require('lodash/kebabCase');
-var lowerCase = _interopDefault(require('lodash/lowerCase'));
-var noop = _interopDefault(require('lodash/noop'));
-var extend = _interopDefault(require('lodash/extend'));
+import kebabCase from 'lodash/kebabCase';
+import lowerCase from 'lodash/lowerCase';
+import noop from 'lodash/noop';
+import extend from 'lodash/extend';
 
 const defaults = {
   interimResults: false,
@@ -15,7 +11,7 @@ const defaults = {
   onResult: noop,
 };
 
-function webSpeechApi (opt) {
+export default function (opt) {
   const options = extend(defaults, opt);
   const recognition = new webkitSpeechRecognition();
   
@@ -29,37 +25,31 @@ function webSpeechApi (opt) {
 
   recognition.continuous = options.continuous;
   recognition.interimResults = options.interimResults;
-  recognition.lang = options.lang;
+  recognition.lang = options.lang
   recognition.maxAlternatives = options.maxAlternatives;
 
   const start = () => {
     recognition.start();
     console.log('started recording');
-  };
+  }
   
   const stop = () => {
     recognition.stop();
     console.log('stopped recording');
-  };
+  }
   console.log(options);
   recognition.onresult = function(e) {
     if (options.onResult) {
       options.onResult(e.results[e.results.length - 1]);
     }
-  };
+  }
   
   recognition.onerror = function(event) {
     console.log(event.error);
-  };
+  }
   
   return {
     start,
     stop,
   }
 }
-
-var main = {
-  webSpeechApi,
-};
-
-module.exports = main;

@@ -11,7 +11,7 @@ const defaults = {
   onResult: noop,
 };
 
-function main (opt) {
+function webSpeechApi (opt) {
   const options = extend(defaults, opt);
   const recognition = new webkitSpeechRecognition();
   
@@ -53,5 +53,9 @@ function main (opt) {
     stop,
   }
 }
+
+var main = {
+  webSpeechApi,
+};
 
 export default main;
