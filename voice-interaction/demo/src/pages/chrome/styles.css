@@ -1,0 +1,55 @@
+.wrapper {
+  flex-direction: row;
+  padding: 12px;
+}
+.wrapper > div {
+  flex: 1;
+}
+
+.wrapper > div:first-child {
+  border-right: 1px #ccc dashed;
+}
+
+.App {
+  flexGrow: 1;
+}
+.toolbar {
+  background-color: #64b5f6;
+  justify-content: space-between;
+  font-size: 16pt;
+}
+.App > p {
+  margin: 0;
+  padding: 150px 0 150px;
+}
+.Box {
+  font-size: 5vh;
+  padding: 22px;
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.navContainer {
+  position: relative;
+  top: 4px;
+  background-color: #fff;
+  padding: 12px 0 12px 0;
+  height: 100%;
+  width: 300px;
+}
+
+.navContainer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.settings {
+  padding: 12px;
+  flex: 3;
+}

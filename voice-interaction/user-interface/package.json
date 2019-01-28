@@ -1,5 +1,5 @@
 {
-  "name": "user-interface",
+  "name": "sound-ui",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^3.9.0",
+    "@material-ui/icons": "^3.0.2",
     "react": "^16.7.0",
+    "recompose": "^0.30.0",
     "storybook": "^1.0.0"
   },
   "devDependencies": {

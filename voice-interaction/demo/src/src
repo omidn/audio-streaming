@@ -1,0 +1,12 @@
+  /home/omid/source-code/smart_voice_test/voice-interaction/demo/src:
+  total used in directory 48 available 544480720
+  drwxr-xr-x 3 omid omid 4096 28. Jan 11:28 .
+  drwxr-xr-x 7 omid omid 4096 28. Jan 10:39 ..
+  -rwxr-xr-x 1 omid omid  350 28. Jan 11:00 App.css
+  -rwxr-xr-x 1 omid omid 1734 28. Jan 11:26 App.js
+  -rwxr-xr-x 1 omid omid  248 25. Jan 11:15 App.test.js
+  drwxr-xr-x 3 omid omid 4096 28. Jan 11:10 components
+  -rwxr-xr-x 1 omid omid  380 25. Jan 11:15 index.css
+  -rwxr-xr-x 1 omid omid  454 25. Jan 11:36 index.js
+  -rwxr-xr-x 1 omid omid 2671 25. Jan 11:15 logo.svg
+  -rwxr-xr-x 1 omid omid 4997 25. Jan 11:32 serviceWorker.js
