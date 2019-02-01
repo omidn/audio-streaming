@@ -1,12 +1,13 @@
 const CONVERSION_RATE = 2 ** (16 - 1) - 1; // 32767
-const MAX_INT = Math.pow(2, 53);
+const MAX_INT = Number.MAX_SAFE_INTEGER;
 
 export default () => {
   const AudioContext = window.AudioContext || window.webkitAudioContex;
   const audioContext = audioContext || new AudioContext();
-  let inputPoint = null, microphone = null, analyser = null,  scriptProcessor = null;
+
+  let onResult = null, inputPoint = null, stream = null, microphone = null, analyser = null,  scriptProcessor = null;
   
-  const startRecording = (stream, onResult, callback) => {
+  const startRecording = (onResult, callback) => {
     if (!audioContext) {
       return;
     }
@@ -14,7 +15,7 @@ export default () => {
     inputPoint = audioContext.createGain();
     microphone = audioContext.createMediaStreamSource(stream);
     analyser = audioContext.createAnalyser();
-    scriptProcessor = inputPoint.context.createScriptProcessor(2048, 2, 2);
+    scriptProcessor = inputPoint.context.createScriptProcessor(2048, 1, 1);
 
     // actually start recording, the converse is to disconnect() microphone and recording should stop
     microphone.connect(inputPoint);
@@ -23,14 +24,44 @@ export default () => {
     scriptProcessor.connect(inputPoint.context.destination);
     
 	  // This is for registering to the “data” event of audio stream, without overwriting the default scriptProcessor.onAudioProcess function if there is one.
-	  scriptProcessor.addEventListener('audioprocess', e => {
-      const floatSamples = e.inputBuffer.getChannelData(0);
-      const r = Int16Array.from(floatSamples.map(n => n * CONVERSION_RATE));
-      onResult(r);
-    });
+	  scriptProcessor.addEventListener('audioprocess', streamAudioData);
   }
 
-  const start = (onResult) => {
+
+  const streamAudioData = (e) => {
+    onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), 44100, 16000));
+  };
+
+  const downSampleBuffer = function (buffer, sampleRate, outSampleRate) {
+    if (outSampleRate == sampleRate) {
+        return buffer;
+    }
+    if (outSampleRate > sampleRate) {
+        throw "downsampling rate show be smaller than original sample rate";
+    }
+    const sampleRateRatio = sampleRate / outSampleRate;
+    const newLength = Math.round(buffer.length / sampleRateRatio);
+    const result = new Int16Array(newLength);
+    let  offsetResult = 0, offsetBuffer = 0;
+    
+    while (offsetResult < result.length) {
+      const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+      let accum = 0, count = 0;
+      for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+        accum += buffer[i];
+        count++;
+      }
+      result[offsetResult] = Math.min(1, accum / count)*0x7FFF;
+      offsetResult++;
+      offsetBuffer = nextOffsetBuffer;
+    }
+    
+    return result.buffer;
+  }
+  
+  const start = (func) => {
+    onResult = func;
+    
     navigator.mediaDevices.getUserMedia({
 	    audio: {
 	      mandatory: {
@@ -40,8 +71,9 @@ export default () => {
 		      googHighpassFilter: 'false',
 		    },
 	    },
-    }).then((stream) => {
-      startRecording(stream, onResult);
+    }).then((s) => {
+      stream = s;
+      startRecording(onResult);
     })
 	    .catch(e => {
 	      console.log(e);
@@ -50,11 +82,16 @@ export default () => {
 
 
   const stop = () => {
+    if (stream) {
+      stream.getTracks()[0].stop();
+      stream = null;
+    }
+    
     if (microphone !== null) {
-      scriptProcessor.disconnect(inputPoint.context.destination);
-      inputPoint.disconnect(scriptProcessor);
-      inputPoint.disconnect(analyser);
-      microphone.disconnect(inputPoint); 
+      scriptProcessor.removeEventListener('audioprocess', streamAudioData);
+      // inputPoint.disconnect(scriptProcessor);
+      // inputPoint.disconnect(analyser);
+      // microphone.disconnect(inputPoint); 
     }
   }
 

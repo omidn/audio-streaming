@@ -8,17 +8,19 @@ import styles from './styles.css';
 const GoogleApi = ({ socket, recorder, results }) => {
   const onAudioRecordResult = (arr) => {
     if (socket && socket.readyState === socket.OPEN) {
-      console.log('arr', arr.length);
       socket.send(arr);
     }
   }
   
-  const onRecorderClickHandler = (isRecording) => isRecording ? recorder.start(onAudioRecordResult) : recorder.stop();
-
-  const onEmitClickHandler = () => {
-    socket.emit('chat', Math.random().toString());
-  };
-  
+  const onRecorderClickHandler = (isRecording) => {
+    if (isRecording) {
+      recorder.start(onAudioRecordResult)
+      socket.open();
+    } else {
+      socket.disconnect();
+      recorder.stop(); 
+   }
+  }
   return (
     <Paper className={styles.wrapper}>
       <div>
@@ -28,9 +30,8 @@ const GoogleApi = ({ socket, recorder, results }) => {
       <div className={styles.settings}>
         <Recorder onClick={onRecorderClickHandler} />
         <h4>Lang: en_US</h4>
-        <Button onClick={onEmitClickHandler}>emit</Button>
         <p>
-      Web socket
+          Web socket
         </p>
       </div>
     </Paper>
