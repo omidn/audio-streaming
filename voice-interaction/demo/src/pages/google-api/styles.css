@@ -3,6 +3,7 @@
   flex-direction: row;
   padding: 12px;
 }
+
 .wrapper > div {
   flex: 1;
 }
@@ -14,4 +15,8 @@
 .settings {
   padding: 12px;
   flex: 3;
+}
+
+.buttonsContainer > button:not(:first-child) {
+  margin: 0 10px 0;
 }

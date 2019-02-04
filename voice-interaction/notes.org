@@ -24,10 +24,17 @@
 
 ** D) Make a TechTalk out of it
 * todo list
-** TODO read the  
+** DONE renew token
+** DONE add the option to upload a file instead of using the microphone as the input for SR
+** TODO fix ui glitches
+** TODO notify when no microphone is detected.
+** DONE fix the issue with unsensible open recognizer channels
+** TODO clean-up the code and document it a bit.
+** TODO try to find a way to handle the Telekom API audio data
+** TODO fix the issue with clicking on left-side menu entries
 * notes
 ** microsoft has its own streaming API, the same as google cloud's
 ** socket.io is a mucsh slower solution in comparision with node's raw sockets over tcp (~1/4 performance)
-*** 
+* 
 
     
