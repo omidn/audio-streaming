@@ -31,16 +31,9 @@ const Root = ({ recorder, results }) => {
         <div className={styles.wrapper}>
           <div className={styles.navContainer}>
             <List className={styles.navList}>
-              <ListItem button>
-                <Link to="/">Chrome built-in</Link>
-              </ListItem>
-              <ListItem button>
-                <Link to="/google-api">Google Voice API</Link>
-                <ListItemText inset primary="" />
-              </ListItem>
-              <ListItem button>
-                <Link to="/wave2letter">Wave2letter++</Link>
-              </ListItem>
+              <Link to="/"><ListItem button>Chrome built-in</ListItem></Link>
+              <Link to="/google-api"><ListItem button>Google Voice API</ListItem></Link>
+              <Link to="/wave2letter"><ListItem button>Wave2letter++</ListItem></Link>
             </List>
           </div>
           <div className={styles.results}>
