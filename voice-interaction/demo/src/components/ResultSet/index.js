@@ -10,15 +10,15 @@ const ResultSet = ({ items }) => (
   <div className={styles.wrapper}>
     <List >    
       {
-        items.map(x =>(
-          <ListItem key={x.text}>
+        items.map((x, i) => (
+          <ListItem key={i}>
             <Chip
               avatar={<Avatar color="secondary">{round(x.conf * 100, 0)}</Avatar>}
               label={x.text}
               clickable
               color="secondary"
             />
-          </ListItem>              
+          </ListItem>
         ))
       }
     </List>

@@ -26,7 +26,6 @@
 * todo list
 ** DONE renew token
 ** DONE add the option to upload a file instead of using the microphone as the input for SR
-** TODO fix ui glitches
 ** TODO notify when no microphone is detected.
 ** DONE fix the issue with unsensible open recognizer channels
 ** TODO clean-up the code and document it a bit.

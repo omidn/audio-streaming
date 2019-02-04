@@ -38,23 +38,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   const r = response.results[0].alternatives[0];
   console.log({ transcript: r.transcript, confidence: r.confidence });
   res.json({ transcript: r.transcript, confidence: r.confidence });
-  
-  // const stream = new Readable({
-  //   read(size) {
-  //     this.push(req.file.buffer);
-  //   }
-  // });
-  // stream.push(req.file.buffer.toString('base64'));
-  const recognizerStream = client
-        .streamingRecognize(request)
-        .on('data', (d) => {
-          const r = d.results[0].alternatives[0];
-          res.json({ transcript: r.transcript, confidence: r.confidence });
-        }).on('error', console.error);
-
-  // recognizerStream.pipe(stream);
-  // stream.pipe(recognizerStream);
-  // stream.pipe(recognizerStream);
 });
 
 const request = {

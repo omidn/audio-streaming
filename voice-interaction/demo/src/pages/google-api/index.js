@@ -23,8 +23,12 @@ export default compose(
   withState('results', 'onSetResults', []),
   withState('socket', 'setSocket', null),
   withHandlers({
-    onFileUpload: ({ results, onSetResults }) => async file => {
-      console.log('file', file);
+    addResult: ({ results, onSetResults }) => result => {
+      onSetResults(results.concat(result));
+    },
+  }),
+  withHandlers({
+    onFileUpload: ({ addResult }) => async file => {
       const formData = new FormData();
       formData.append('file', file);
       try {
@@ -33,22 +37,20 @@ export default compose(
           body: formData,
         });
         const json = await r.json();
-        results.push({ text: json.transcript, conf: json.confidence });
-        onSetResults(results);
+        addResult({ text: json.transcript, conf: json.confidence });
       } catch(err) {
         console.log('error', err);
       }      
-    }
+    },   
   }),
   lifecycle({
     componentDidMount() {
-      const { setSocket, onSetResults, results } = this.props;
+      const { setSocket, addResult } = this.props;
       const socket = io(ENDPOINT, { audoConnect: false });
       setSocket(socket);
       
       socket.on('message', (d) => {
-        results.push({ text: d.transcript, conf: d.confidence });
-        onSetResults(results);
+        addResult({ text: d.transcript, conf: d.confidence });
       });
     },
   }),
