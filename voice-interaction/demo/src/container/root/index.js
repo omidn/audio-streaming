@@ -23,7 +23,7 @@ const Root = () => (
           <List className={styles.navList}>
             <Link to="/"><ListItem button>Chrome built-in</ListItem></Link>
             <Link to="/google-api"><ListItem button>Google Voice API</ListItem></Link>
-            <Link to="/scroll-exapmle"><ListItem button>Scroll example</ListItem></Link>
+            <Link to="/scroll-example"><ListItem button>Scroll example</ListItem></Link>
             <Link to="/resources"><ListItem button>Other resources</ListItem></Link>
           </List>
         </div>

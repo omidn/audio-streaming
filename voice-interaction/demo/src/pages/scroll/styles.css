@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  padding: 12px;
+  flex-direction: column;
+}
+
+.scrollContainer {
+  background: #bbdefb;
+  border-radius: 5px;
+  color: #fff;
+  height: 200px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}

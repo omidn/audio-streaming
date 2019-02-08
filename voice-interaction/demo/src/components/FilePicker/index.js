@@ -23,7 +23,12 @@ const FilePicker = ({ onFileSelected, setFileInput, input }) => {
   return (
     <Fab color="primary" onClick={onClickHandler}>
       <FileAttachIcon />
-      <input ref={setFileInput} type="file" className={styles.fileInput} onChange={onHandleFilePicked} />
+      <input
+        ref={setFileInput}
+        type="file"
+        className={styles.fileInput}
+        onChange={onHandleFilePicked}
+      />
     </Fab>
   );
 };

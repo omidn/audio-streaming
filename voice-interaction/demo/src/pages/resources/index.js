@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 const Resources = () => (
   <Paper className={styles.wrapper}>
-    <h3>Other resources</h3>
+    <h1>Other resources</h1>
     <ul>
       <li>
         <a href="https://github.com/facebookresearch/wav2letter">Wave2letter++</a>
