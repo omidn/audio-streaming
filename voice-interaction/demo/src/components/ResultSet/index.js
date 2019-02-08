@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Chip from '@material-ui/core/Chip';
@@ -8,7 +9,7 @@ import styles from './styles.css';
 
 const ResultSet = ({ items }) => (
   <div className={styles.wrapper}>
-    <List >    
+    <List>
       {
         items.map((x, i) => (
           <ListItem key={i}>
@@ -24,5 +25,16 @@ const ResultSet = ({ items }) => (
     </List>
   </div>
 );
+
+ResultSet.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    conf: PropTypes.number,
+    text: PropTypes.string,
+  })),
+};
+
+ResultSet.defaultProps = {
+  items: [],
+};
 
 export default ResultSet;
