@@ -6,14 +6,15 @@ import ListItem from '@material-ui/core/ListItem';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import ChromePage from '../../pages/chrome';
 import GoogleApiPage from '../../pages/google-api';
-import Wave2letterPage from '../../pages/wave2letter';
+import ScrollPage from '../../pages/scroll';
+import ResourcesPage from '../../pages/resources';
 import styles from './styles.css';
 
 const Root = () => (
   <div className={styles.App}>
     <AppBar position="static">
       <Toolbar className={styles.toolbar}>
-        Built-in chrome example
+        Audio-to-Text Lab
       </Toolbar>
     </AppBar>
     <Router>
@@ -22,13 +23,15 @@ const Root = () => (
           <List className={styles.navList}>
             <Link to="/"><ListItem button>Chrome built-in</ListItem></Link>
             <Link to="/google-api"><ListItem button>Google Voice API</ListItem></Link>
-            <Link to="/wave2letter"><ListItem button>Wave2letter++</ListItem></Link>
+            <Link to="/scroll-exapmle"><ListItem button>Scroll example</ListItem></Link>
+            <Link to="/resources"><ListItem button>Other resources</ListItem></Link>
           </List>
         </div>
         <div className={styles.results}>
           <Route component={ChromePage} path="/" exact />
           <Route component={GoogleApiPage} path="/google-api" exact />
-          <Route component={Wave2letterPage} path="/wave2letter" />
+          <Route component={ScrollPage} path="/scroll-example" exact />
+          <Route component={ResourcesPage} path="/resources" />
         </div>
       </div>
     </Router>

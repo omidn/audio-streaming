@@ -24,8 +24,10 @@ export default compose(
       const recorder = api.webSpeechApi({
         ...options,
         onResult: (res) => {
-          results.push({ text: res[0].transcript, conf: res[0].confidence });
-          onSetResults(results);
+          onSetResults(results.concat({
+            text: res[0].transcript,
+            conf: res[0].confidence,
+          }));
         },
       });
 

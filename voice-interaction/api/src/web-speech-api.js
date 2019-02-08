@@ -37,10 +37,12 @@ export default function (opt) {
     recognition.stop();
     console.log('stopped recording');
   }
-  console.log(options);
+
   recognition.onresult = function(e) {
+    const msg = e.results[e.results.length - 1];
+    
     if (options.onResult) {
-      options.onResult(e.results[e.results.length - 1]);
+      options.onResult(msg);
     }
   }
   

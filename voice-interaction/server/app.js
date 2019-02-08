@@ -4,10 +4,19 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const speech = require('@google-cloud/speech');
 const multer = require('multer');
-const { Readable } = require('stream');
 const fs = require('fs');
 
 const client = new speech.SpeechClient();
+
+const request = {
+  config: {
+    enableWordTimeOffsets: true,
+    languageCode: 'en-US',
+    sampleRateHertz: 16000,
+    encoding: 'LINEAR16',
+  },
+  interimResults: false,
+};
 
 // enable Cross Origin Resource Sharing
 app.use(cors());
@@ -40,16 +49,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   res.json({ transcript: r.transcript, confidence: r.confidence });
 });
 
-const request = {
-  config: {
-    enableWordTimeOffsets: true,
-    languageCode: 'en-US',
-    sampleRateHertz: 16000,
-    encoding: 'LINEAR16',
-  },
-  interimResults: false,
-};
-
 io.on('connection', (socket) => {
   console.log('a user connected');
   let recognizerStream = null;
@@ -58,8 +57,10 @@ io.on('connection', (socket) => {
     recognizerStream = client
       .streamingRecognize(request)
       .on('data', (d) => {
-        const res = d.results[0].alternatives[0];
-        socket.send({ transcript: res.transcript, confidence: res.confidence });
+        const res = d.resluts[0].alternatives[0];
+        socket.send({
+          transcript: res.transcript, confidence: res.confidence
+        });
       }).on('error', console.error);
   };
 
@@ -75,7 +76,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     if (recognizerStream) {
       console.log('a user is disconnected');
-      recognizerStream.end();
+      recognizerStream.end(); 
       recognizerStream = null;
     }
   })
