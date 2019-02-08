@@ -31,9 +31,9 @@ const FilePicker = ({ onFileSelected, setFileInput, input }) => {
 FilePicker.propTypes = {
   onFileSelected: PropTypes.func,
   setFileInput: PropTypes.func.isRequired,
-  input: PropTypes.shapeOf(PropTypes.shape({
+  input: PropTypes.shape({
     value: PropTypes.string,
-  })),
+  }),
 };
 
 FilePicker.defaultProps = {
