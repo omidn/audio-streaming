@@ -25,7 +25,8 @@
 .scrollContainer {
   background: #bbdefb;
   border-radius: 5px;
-  color: #fff;
+  color: #1565c0;
+  font-weight: bold;
   height: 200px;
   width: 200px;
   justify-content: center;
@@ -33,4 +34,14 @@
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+}
+
+.scrollContainer > p {
+  height: 15px;
+  padding-bottom: 20px;
+  line-height: 15px;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px dashed #e3f2fd;
 }

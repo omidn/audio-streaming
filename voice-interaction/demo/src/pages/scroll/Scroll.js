@@ -7,11 +7,11 @@ import Recorder from '../../components/Recorder';
 import ResultSet from '../../components/ResultSet';
 import styles from './styles.css';
 
-const LongList = () => (
-  <div className={styles.scrollContainer}>
+const LongList = (props) => (
+  <div {...props} className={styles.scrollContainer}>
     {
-      range(100).map(x => (
-        <p>{x}</p>
+      range(-95, 100).map((x, i) => (
+        <p key={i}>{x}</p>
       ))
     }
   </div>
@@ -21,6 +21,8 @@ const Scroll = ({
   results,
   socket,
   recorder,
+  setInput,
+  input,
 }) => {
   const onAudioRecordResult = (arr) => {
     if (socket && socket.readyState === socket.OPEN) {
@@ -28,7 +30,9 @@ const Scroll = ({
     }
   };
 
+
   const onRecorderClickHandler = (isRecording) => {
+    console.log('internal', input);    
     if (isRecording) {
       recorder.start(onAudioRecordResult);
       socket.open();
@@ -37,11 +41,18 @@ const Scroll = ({
       recorder.stop();
     }
   };
+  
   return (
     <Paper className={styles.wrapper}>
       <div>
         <h1>Scroll exampe</h1>
-        <LongList />
+        <div ref={setInput} className={styles.scrollContainer}>
+          {
+            range(-95, 100).map((x, i) => (
+              <p key={i}>{x}</p>
+            ))
+          }
+        </div>
       </div>
       <div>
         <h4>Voice-to-Text results:</h4>

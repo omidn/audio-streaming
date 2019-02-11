@@ -64,6 +64,7 @@ io.on('connection', (socket) => {
   const recognizeStream = createRecognizer(socket);
 
   socket.on('message', (buffer) => {
+    console.log('m', buffer);
     recognizeStream.write(buffer);
   });
 

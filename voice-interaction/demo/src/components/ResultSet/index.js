@@ -17,7 +17,7 @@ const ResultSet = ({ items }) => (
               avatar={<Avatar color="secondary">{round(x.conf * 100, 0)}</Avatar>}
               label={x.text}
               clickable
-              color="secondary"
+              color={x.isCommand ? "primary" : "secondary"}
             />
           </ListItem>
         ))

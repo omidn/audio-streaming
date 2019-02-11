@@ -46,7 +46,7 @@ export default compose(
   lifecycle({
     componentDidMount() {
       const { setSocket, addResult } = this.props;
-      const socket = io(ENDPOINT, { audoConnect: false });
+      const socket = io(ENDPOINT, { autoConnect: false });
       setSocket(socket);
       socket.on('message', (data) => {
         const result = JSON.parse(data);
