@@ -48,8 +48,9 @@ export default compose(
       const { setSocket, addResult } = this.props;
       const socket = io(ENDPOINT, { audoConnect: false });
       setSocket(socket);
-      socket.on('message', (d) => {
-        addResult({ text: d.transcript, conf: d.confidence });
+      socket.on('message', (data) => {
+        const result = JSON.parse(data);
+        addResult({ text: result.transcript, conf: result.confidence });
       });
     },
   }),

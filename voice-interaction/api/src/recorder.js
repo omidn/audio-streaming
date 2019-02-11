@@ -1,7 +1,6 @@
 export default () => {
   const AudioContext = window.AudioContext || window.webkitAudioContex;
   const audioContext = audioContext || new AudioContext();
-
   let onResult = null, inputPoint = null, stream = null, microphone = null, analyser = null,  scriptProcessor = null;
   
   const startRecording = (onResult, callback) => {
@@ -14,6 +13,7 @@ export default () => {
     microphone = audioContext.createMediaStreamSource(stream);
     analyser = audioContext.createAnalyser();
     scriptProcessor = inputPoint.context.createScriptProcessor(2048, 1, 1);
+    
 
     // actually start recording, the converse is to disconnect() microphone and recording should stop
     microphone.connect(inputPoint);
@@ -23,11 +23,14 @@ export default () => {
     
 	  // This is for registering to the “data” event of audio stream, without overwriting the default scriptProcessor.onAudioProcess function if there is one.
 	  scriptProcessor.addEventListener('audioprocess', streamAudioData);
+    console.log('started recording');
   }
 
 
   const streamAudioData = (e) => {
     onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -> 16000
+    // const floatSamples = e.inputBuffer.getChannelData(0);
+    // onResult(Int16Array.from(floatSamples.map(n => n * 32767)).buffer);
   };
 
   const downSampleBuffer = function (buffer, sampleRate, outSampleRate) {

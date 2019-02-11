@@ -1,9 +1,9 @@
 {
   "name": "sound-api",
   "version": "1.0.0",
-  "main": "dist/how-long-till-lunch.cjs.js",
-  "module": "dist/how-long-till-lunch.esm.js",
-  "browser": "dist/how-long-till-lunch.umd.js",
+  "main": "dist/main.cjs.js",
+  "module": "dist/main.esm.js",
+  "browser": "dist/main.umd.js",
   "dependencies": {
     "lodash": "^4.17.11",
     "ms": "^2.0.0"

@@ -2,6 +2,7 @@ const app = require('express')();
 const cors = require('cors');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const SocketStream = require('socket.io-stream');
 const speech = require('@google-cloud/speech');
 const multer = require('multer');
 const fs = require('fs');
@@ -18,7 +19,7 @@ const request = {
   interimResults: false,
 };
 
-// enable Cross Origin Resource Sharing
+// enable cross Origin Resource Sharing
 app.use(cors());
 
 // configure multer to parse incomming form-date
@@ -39,45 +40,40 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     },
     config: {
       encoding: 'LINEAR16',
-      sampleRateHertz: 16000,
+      // sampleRateHertz: 16000,
       languageCode: 'en-US',
     },
+    interimResults: true,
   };
   const [response] = await client.recognize(request);
   const r = response.results[0].alternatives[0];
   console.log({ transcript: r.transcript, confidence: r.confidence });
   res.json({ transcript: r.transcript, confidence: r.confidence });
 });
+const createRecognizer = (socket) => {
+  return client
+    .streamingRecognize(request)
+    .on('data', (res) => {
+      const { transcript, confidence } = res.results[0].alternatives[0];
+      
+      socket.send(JSON.stringify({
+        transcript, confidence
+      }));
+    }).on('error', console.error);
+};
+
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
-  let recognizerStream = null;
-
-  const initRecognizer = () => {
-    recognizerStream = client
-      .streamingRecognize(request)
-      .on('data', (d) => {
-        const res = d.resluts[0].alternatives[0];
-        socket.send({
-          transcript: res.transcript, confidence: res.confidence
-        });
-      }).on('error', console.error);
-  };
-
-  socket.on('message', (data) => {
-    if (recognizerStream === null) {
-      initRecognizer();
-      console.log('a new recognizer initiated');
-    }
+  const recognizeStream = createRecognizer(socket);
     
-    recognizerStream.write(data);
+  socket.on('message', (data) => {
+    recognizeStream.write(data);
   });
   
   socket.on('disconnect', () => {
-    if (recognizerStream) {
+    if (recognizeStream) {
       console.log('a user is disconnected');
-      recognizerStream.end(); 
-      recognizerStream = null;
+      recognizeStream.end();
     }
   })
 });

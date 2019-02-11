@@ -1,4 +1,3 @@
-import kebabCase from 'lodash/kebabCase';
 import lowerCase from 'lodash/lowerCase';
 import noop from 'lodash/noop';
 import extend from 'lodash/extend';

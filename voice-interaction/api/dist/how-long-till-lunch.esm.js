@@ -1,4 +1,3 @@
-import 'lodash/kebabCase';
 import lowerCase from 'lodash/lowerCase';
 import noop from 'lodash/noop';
 import extend from 'lodash/extend';
@@ -72,6 +71,7 @@ var recorder = () => {
     microphone = audioContext.createMediaStreamSource(stream);
     analyser = audioContext.createAnalyser();
     scriptProcessor = inputPoint.context.createScriptProcessor(2048, 1, 1);
+    
 
     // actually start recording, the converse is to disconnect() microphone and recording should stop
     microphone.connect(inputPoint);
@@ -85,37 +85,9 @@ var recorder = () => {
 
 
   const streamAudioData = (e) => {
-    onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -> 16000
-  };
-
-  const downSampleBuffer = function (buffer, sampleRate, outSampleRate) {
-    if (outSampleRate == sampleRate) {
-      return buffer;
-    }
-    if (outSampleRate > sampleRate) {
-      throw "downsampling rate show be smaller than original sample rate";
-    }
-    
-    const sampleRateRatio = sampleRate / outSampleRate;
-    const newLength = Math.round(buffer.length / sampleRateRatio);
-    const result = new Int16Array(newLength);
-    let offsetResult = 0, offsetBuffer = 0;
-    
-    while (offsetResult < result.length) {
-      const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
-      let accum = 0, count = 0;
-      for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
-        accum += buffer[i];
-        count++;
-      }
-
-      // normalize the median buffer
-      result[offsetResult] = Math.min(1, accum / count) * 0x7FFF;
-      offsetResult++;
-      offsetBuffer = nextOffsetBuffer;
-    }
-    
-    return result.buffer;
+    // onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -> 16000
+    const floatSamples = e.inputBuffer.getChannelData(0);
+    onResult(Int16Array.from(floatSamples.map(n => n * 0x7FFF)).buffer);
   };
   
   // start recording 
