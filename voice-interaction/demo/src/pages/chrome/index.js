@@ -27,7 +27,7 @@ export default compose(
   lifecycle({
     componentDidMount() {
       const { addResult, setRecorder } = this.props;
-      const recorder = api.webSpeechApi({
+      const recorder = api.webSpeech({
         ...options,
         onResult: (res) => {
           addResult({

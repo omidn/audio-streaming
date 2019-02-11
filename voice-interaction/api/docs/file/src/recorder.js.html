@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/recorder.js | sound-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-recorder">recorder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-webspeech">webspeech</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-RecordType">RecordType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-WebKitType">WebKitType</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/recorder.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/** 
+* @desc Use  Google&apos;s Speech to text API 
+* @see https://cloud.google.com/speech-to-text/docs/
+* @return {RecordType} 
+* @example
+* import { recorder } from &apos;sound-api&apos;;
+* const { start, stop } = recorder(); 
+*/
+export default () =&gt; {
+  const AudioContext = window.AudioContext || window.webkitAudioContex;
+  const audioContext = audioContext || new AudioContext();
+  let onResult = null, inputPoint = null, stream = null, microphone = null, analyser = null,  scriptProcessor = null;
+  
+  // docs
+  const startRecording = (onResult, callback) =&gt; {
+    if (!audioContext) {
+      return;
+    }
+    
+    // define the audio graph
+    inputPoint = audioContext.createGain();
+    microphone = audioContext.createMediaStreamSource(stream);
+    analyser = audioContext.createAnalyser();
+    scriptProcessor = inputPoint.context.createScriptProcessor(2048, 1, 1);
+    
+
+    // actually start recording, the converse is to disconnect() microphone and recording should stop
+    microphone.connect(inputPoint);
+    inputPoint.connect(analyser);
+    inputPoint.connect(scriptProcessor);
+    scriptProcessor.connect(inputPoint.context.destination);
+    
+	  // This is for registering to the &#x201C;data&#x201D; event of audio stream, without overwriting the default scriptProcessor.onAudioProcess function if there is one.
+	  scriptProcessor.addEventListener(&apos;audioprocess&apos;, streamAudioData);
+    console.log(&apos;started recording&apos;);
+  }
+
+
+  const streamAudioData = (e) =&gt; {
+    onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -&gt; 16000
+  };
+  
+  const downSampleBuffer = function (buffer, sampleRate, outSampleRate) {
+    if (outSampleRate == sampleRate) {
+      return buffer;
+    }
+
+    if (outSampleRate &gt; sampleRate) {
+      throw &quot;downsampling rate show be smaller than original sample rate&quot;;
+    }
+    
+    const sampleRateRatio = sampleRate / outSampleRate;
+    const newLength = Math.round(buffer.length / sampleRateRatio);
+    const result = new Int16Array(newLength);
+    let offsetResult = 0, offsetBuffer = 0;
+    
+    while (offsetResult &lt; result.length) {
+      const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+      let accum = 0, count = 0;
+      for (var i = offsetBuffer; i &lt; nextOffsetBuffer &amp;&amp; i &lt; buffer.length; i++) {
+        accum += buffer[i];
+        count++;
+      }
+
+      // normalize the median buffer
+      result[offsetResult] = Math.min(1, accum / count) * 0x7FFF;
+      offsetResult++;
+      offsetBuffer = nextOffsetBuffer;
+    }
+    
+    return result.buffer;
+  }
+  
+  /**
+   * @desc starts recording audio from microphones
+   * @param {number} the callback which receives the recorded audio buffer
+   */
+  const start = (callback) =&gt; {
+    onResult = callback;
+    // try to start recording audio
+    navigator.mediaDevices.getUserMedia({
+	    audio: true,
+      // mandatory: {
+		  //   googEchoCancellation: false,
+		  //   googAutoGainControl: false,
+		  //   googNoiseSuppression: false,
+		  //   googHighpassFilter: false,
+		  // },
+    }).then((s) =&gt; {
+      stream = s;
+      startRecording(onResult);
+    })
+	    .catch(e =&gt; {
+	      console.log(e);
+	    });
+  }
+
+
+  const stop = () =&gt; {
+    if (stream) {
+      stream.getTracks()[0].stop();
+      stream = null;
+    }
+    
+    if (scriptProcessor !== null) {
+      scriptProcessor.removeEventListener(&apos;audioprocess&apos;, streamAudioData);
+    }
+  }
+
+  return {
+    start,
+    stop,
+  }
+}
+/**
+* @typedef {Object} RecordType
+* @property {function} start start recording audio
+* @property {function} stop stop recording audio
+*/
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

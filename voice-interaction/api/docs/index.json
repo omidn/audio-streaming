@@ -1,0 +1,835 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/main.js",
+    "content": "import webSpeech from './web-speech';\nimport recorder from './recorder';\n\nexport default {\n  webSpeech,\n  recorder,\n};\n",
+    "static": true,
+    "longname": "/home/omid/source-code/smart_voice_test/voice-interaction/api/src/main.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "file",
+    "name": "src/recorder.js",
+    "content": "/** \n* @desc Use  Google's Speech to text API \n* @see https://cloud.google.com/speech-to-text/docs/\n* @return {RecordType} \n* @example\n* import { recorder } from 'sound-api';\n* const { start, stop } = recorder(); \n*/\nexport default () => {\n  const AudioContext = window.AudioContext || window.webkitAudioContex;\n  const audioContext = audioContext || new AudioContext();\n  let onResult = null, inputPoint = null, stream = null, microphone = null, analyser = null,  scriptProcessor = null;\n  \n  // docs\n  const startRecording = (onResult, callback) => {\n    if (!audioContext) {\n      return;\n    }\n    \n    // define the audio graph\n    inputPoint = audioContext.createGain();\n    microphone = audioContext.createMediaStreamSource(stream);\n    analyser = audioContext.createAnalyser();\n    scriptProcessor = inputPoint.context.createScriptProcessor(2048, 1, 1);\n    \n\n    // actually start recording, the converse is to disconnect() microphone and recording should stop\n    microphone.connect(inputPoint);\n    inputPoint.connect(analyser);\n    inputPoint.connect(scriptProcessor);\n    scriptProcessor.connect(inputPoint.context.destination);\n    \n\t  // This is for registering to the “data” event of audio stream, without overwriting the default scriptProcessor.onAudioProcess function if there is one.\n\t  scriptProcessor.addEventListener('audioprocess', streamAudioData);\n    console.log('started recording');\n  }\n\n\n  const streamAudioData = (e) => {\n    onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -> 16000\n  };\n  \n  const downSampleBuffer = function (buffer, sampleRate, outSampleRate) {\n    if (outSampleRate == sampleRate) {\n      return buffer;\n    }\n\n    if (outSampleRate > sampleRate) {\n      throw \"downsampling rate show be smaller than original sample rate\";\n    }\n    \n    const sampleRateRatio = sampleRate / outSampleRate;\n    const newLength = Math.round(buffer.length / sampleRateRatio);\n    const result = new Int16Array(newLength);\n    let offsetResult = 0, offsetBuffer = 0;\n    \n    while (offsetResult < result.length) {\n      const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);\n      let accum = 0, count = 0;\n      for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {\n        accum += buffer[i];\n        count++;\n      }\n\n      // normalize the median buffer\n      result[offsetResult] = Math.min(1, accum / count) * 0x7FFF;\n      offsetResult++;\n      offsetBuffer = nextOffsetBuffer;\n    }\n    \n    return result.buffer;\n  }\n  \n  /**\n   * @desc starts recording audio from microphones\n   * @param {number} the callback which receives the recorded audio buffer\n   */\n  const start = (callback) => {\n    onResult = callback;\n    // try to start recording audio\n    navigator.mediaDevices.getUserMedia({\n\t    audio: true,\n      // mandatory: {\n\t\t  //   googEchoCancellation: false,\n\t\t  //   googAutoGainControl: false,\n\t\t  //   googNoiseSuppression: false,\n\t\t  //   googHighpassFilter: false,\n\t\t  // },\n    }).then((s) => {\n      stream = s;\n      startRecording(onResult);\n    })\n\t    .catch(e => {\n\t      console.log(e);\n\t    });\n  }\n\n\n  const stop = () => {\n    if (stream) {\n      stream.getTracks()[0].stop();\n      stream = null;\n    }\n    \n    if (scriptProcessor !== null) {\n      scriptProcessor.removeEventListener('audioprocess', streamAudioData);\n    }\n  }\n\n  return {\n    start,\n    stop,\n  }\n}\n/**\n* @typedef {Object} RecordType\n* @property {function} start start recording audio\n* @property {function} stop stop recording audio\n*/\n",
+    "static": true,
+    "longname": "/home/omid/source-code/smart_voice_test/voice-interaction/api/src/recorder.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 50,
+    "kind": "function",
+    "name": "recorder",
+    "memberof": "src/recorder.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/recorder.js~recorder",
+    "access": "public",
+    "export": true,
+    "importPath": "sound-api/src/recorder.js",
+    "importStyle": "recorder",
+    "description": "Use  Google's Speech to text API ",
+    "examples": [
+      "import { recorder } from 'sound-api';\nconst { start, stop } = recorder(); "
+    ],
+    "see": [
+      "https://cloud.google.com/speech-to-text/docs/"
+    ],
+    "lineNumber": 9,
+    "return": {
+      "nullable": null,
+      "types": [
+        "RecordType"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 51,
+    "kind": "typedef",
+    "name": "RecordType",
+    "memberof": "src/recorder.js",
+    "static": true,
+    "longname": "src/recorder.js~RecordType",
+    "access": "public",
+    "description": "",
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "start",
+        "description": "start recording audio"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "stop",
+        "description": "stop recording audio"
+      }
+    ],
+    "type": {
+      "types": [
+        "Object"
+      ],
+      "optional": false,
+      "name": "RecordType"
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "file",
+    "name": "src/web-speech.js",
+    "content": "import lowerCase from 'lodash/lowerCase';\nimport noop from 'lodash/noop';\nimport extend from 'lodash/extend';\n/** \n* @desc defaults\n*/\nconst defaults = {\n  interimResults: false,\n  continuous: true,\n  lang: 'en-US',\n  maxAlternatives: 3,\n  onResult: noop,\n};\n\n/** \n* @desc returns the recorder instance from webKitAudioContext\n* @example \n* import api from 'sound-api';\n* const recorder = api.webSpeechApi({\n*   commands: {\n*    'go-up': () => {\n*      window.scrollBy(0, -500);\n*    },\n*    'go-down': () => {\n*      window.scrollBy(0, 500);\n*    },\n*  },\n* });\n* @param {WebKitType} [options] options options\n* @return {object} \n* @property {function} start - starts recording audio from microphone\n* @property {function} stop  - stops recording audio from microphone\n*/\nexport default function (options) {\n  const opt = extend(defaults, opt);\n  const recognition = new webkitSpeechRecognition();\n  \n  if (opt.commands) {\n    const commands = options.commands;\n    const grammar = `#JSGF V1.0; grammar commands; public <command> = ${Object.keys(commands).map(x => lowerCase(x)).join(' | ')} ;`;\n    const list = new webkitSpeechGrammarList();\n    list.addFromString(grammar, 1);\n    recognition.grammars = list;\n  }\n\n  recognition.continuous = opt.continuous;\n  recognition.interimResults = opt.interimResults;\n  recognition.lang = opt.lang\n  recognition.maxAlternatives = opt.maxAlternatives;\n\n  const start = () => {\n    recognition.start();\n    console.log('started recording');\n  }\n  \n  const stop = () => {\n    recognition.stop();\n    console.log('stopped recording');\n  }\n\n  recognition.onresult = function(e) {\n    const msg = e.results[e.results.length - 1];\n    \n    if (options.onResult) {\n      opt.onResult(msg);\n    }\n  }\n  \n  recognition.onerror = function(event) {\n    console.log(event.error);\n  }\n  \n  return {\n    start,\n    stop,\n  }\n}\n\n/** \n* @typedef {Object} WebKitType\n* @property {function} onResult - callback to receive Audio-to-Text results\n* @property {string} [lang] - set preferred language language \n* @property {string} [interimResults] - receive intermediate results\n* @property {boolean} [continuous] - record audio continuous\n* @property {number} [maxAlternatives] - maximum number of alternatives\n*/\n",
+    "static": true,
+    "longname": "/home/omid/source-code/smart_voice_test/voice-interaction/api/src/web-speech.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 53,
+    "kind": "variable",
+    "name": "defaults",
+    "memberof": "src/web-speech.js",
+    "static": true,
+    "longname": "src/web-speech.js~defaults",
+    "access": "public",
+    "export": false,
+    "importPath": "sound-api/src/web-speech.js",
+    "importStyle": null,
+    "description": "defaults",
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "{\"interimResults\": *, \"continuous\": boolean, \"lang\": string, \"maxAlternatives\": number, \"onResult\": *}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 54,
+    "kind": "function",
+    "name": "webspeech",
+    "memberof": "src/web-speech.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/web-speech.js~webspeech",
+    "access": "public",
+    "export": true,
+    "importPath": "sound-api/src/web-speech.js",
+    "importStyle": "webspeech",
+    "description": "returns the recorder instance from webKitAudioContext",
+    "examples": [
+      "import api from 'sound-api';\nconst recorder = api.webSpeechApi({\n  commands: {\n   'go-up': () => {\n     window.scrollBy(0, -500);\n   },\n   'go-down': () => {\n     window.scrollBy(0, 500);\n   },\n },\n});"
+    ],
+    "lineNumber": 34,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "WebKitType"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": "options options"
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "start",
+        "description": "starts recording audio from microphone"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "stop",
+        "description": "stops recording audio from microphone"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "typedef",
+    "name": "WebKitType",
+    "memberof": "src/web-speech.js",
+    "static": true,
+    "longname": "src/web-speech.js~WebKitType",
+    "access": "public",
+    "description": "",
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "onResult",
+        "description": "callback to receive Audio-to-Text results"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "lang",
+        "description": "set preferred language language"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "interimResults",
+        "description": "receive intermediate results"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "continuous",
+        "description": "record audio continuous"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "maxAlternatives",
+        "description": "maximum number of alternatives"
+      }
+    ],
+    "type": {
+      "types": [
+        "Object"
+      ],
+      "optional": false,
+      "name": "WebKitType"
+    }
+  },
+  {
+    "kind": "index",
+    "content": "# rollup-starter-lib\n\n[![Greenkeeper badge](https://badges.greenkeeper.io/rollup/rollup-starter-lib.svg)](https://greenkeeper.io/)\n\nThis repo contains a bare-bones example of how to create a library using Rollup, including importing a module from `node_modules` and converting it from CommonJS.\n\nWe're creating a library called `how-long-till-lunch`, which usefully tells us how long we have to wait until lunch, using the [ms](https://github.com/zeit/ms) package:\n\n```js\nconsole.log('it will be lunchtime in ' + howLongTillLunch());\n```\n\n## Getting started\n\nClone this repository and install its dependencies:\n\n```bash\ngit clone https://github.com/rollup/rollup-starter-lib\ncd rollup-starter-lib\nnpm install\n```\n\n`npm run build` builds the library to `dist`, generating three files:\n\n* `dist/how-long-till-lunch.cjs.js`\n    A CommonJS bundle, suitable for use in Node.js, that `require`s the external dependency. This corresponds to the `\"main\"` field in package.json\n* `dist/how-long-till-lunch.esm.js`\n    an ES module bundle, suitable for use in other people's libraries and applications, that `import`s the external dependency. This corresponds to the `\"module\"` field in package.json\n* `dist/how-long-till-lunch.umd.js`\n    a UMD build, suitable for use in any environment (including the browser, as a `<script>` tag), that includes the external dependency. This corresponds to the `\"browser\"` field in package.json\n\n`npm run dev` builds the library, then keeps rebuilding it whenever the source files change using [rollup-watch](https://github.com/rollup/rollup-watch).\n\n`npm test` builds the library, then tests it.\n\n## Variations\n\n* [babel](https://github.com/rollup/rollup-starter-lib/tree/babel) — illustrates writing the source code in ES2015 and transpiling it for older environments with [Babel](https://babeljs.io/)\n* [buble](https://github.com/rollup/rollup-starter-lib/tree/buble) — similar, but using [Bublé](https://buble.surge.sh/) which is a faster alternative with less configuration\n* [TypeScript](https://github.com/rollup/rollup-starter-lib/tree/typescript) — uses [TypeScript](https://www.typescriptlang.org/) for type-safe code and transpiling\n\n\n\n## License\n\n[MIT](LICENSE).\n",
+    "longname": "/home/omid/source-code/smart_voice_test/voice-interaction/api/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"sound-api\",\n  \"version\": \"1.0.0\",\n  \"main\": \"dist/main.cjs.js\",\n  \"module\": \"dist/main.esm.js\",\n  \"browser\": \"dist/main.umd.js\",\n  \"dependencies\": {\n    \"lodash\": \"^4.17.11\",\n    \"ms\": \"^2.0.0\"\n  },\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"rollup\": \"^1.0.0\",\n    \"rollup-plugin-commonjs\": \"^9.2.0\",\n    \"rollup-plugin-node-resolve\": \"^4.0.0\"\n  },\n  \"scripts\": {\n    \"build\": \"rollup -c\",\n    \"dev\": \"rollup -c -w\",\n    \"test\": \"node test/test.js\",\n    \"pretest\": \"npm run build\"\n  },\n  \"files\": [\n    \"dist\"\n  ]\n}\n",
+    "longname": "/home/omid/source-code/smart_voice_test/voice-interaction/api/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]

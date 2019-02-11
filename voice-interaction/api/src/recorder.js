@@ -1,3 +1,11 @@
+/** 
+* @desc Use  Google's Speech to text API 
+* @see https://cloud.google.com/speech-to-text/docs/
+* @return {RecordType} 
+* @example
+* import { recorder } from 'sound-api';
+* const { start, stop } = recorder(); 
+*/
 export default () => {
   const AudioContext = window.AudioContext || window.webkitAudioContex;
   const audioContext = audioContext || new AudioContext();
@@ -13,6 +21,7 @@ export default () => {
     inputPoint = audioContext.createGain();
     microphone = audioContext.createMediaStreamSource(stream);
     analyser = audioContext.createAnalyser();
+    // 2045 buffer size, one input, one output (mono input and output)
     scriptProcessor = inputPoint.context.createScriptProcessor(2048, 1, 1);
     
 
@@ -23,12 +32,12 @@ export default () => {
     scriptProcessor.connect(inputPoint.context.destination);
     
 	  // This is for registering to the “data” event of audio stream, without overwriting the default scriptProcessor.onAudioProcess function if there is one.
-	  scriptProcessor.addEventListener('audioprocess', streamAudioData);
+	  scriptProcessor.addEventListener('audioprocess', streamAudioCallback);
     console.log('started recording');
   }
 
 
-  const streamAudioData = (e) => {
+  const streamAudioCallback = (e) => {
     onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -> 16000
   };
   
@@ -49,12 +58,14 @@ export default () => {
     while (offsetResult < result.length) {
       const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
       let accum = 0, count = 0;
+      
+      // calculate median buffer value over nextOffsetBuffer
       for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
         accum += buffer[i];
         count++;
       }
 
-      // normalize the median buffer
+      // normalize the median buffer and multiply it to INT_MAX 2^15 - 1 (32767)
       result[offsetResult] = Math.min(1, accum / count) * 0x7FFF;
       offsetResult++;
       offsetBuffer = nextOffsetBuffer;
@@ -63,9 +74,12 @@ export default () => {
     return result.buffer;
   }
   
-  // start recording 
-  const start = (func) => {
-    onResult = func;
+  /**
+   * @desc starts recording audio from microphones
+   * @param {number} the callback which receives the recorded audio buffer
+   */
+  const start = (callback) => {
+    onResult = callback;
     // try to start recording audio
     navigator.mediaDevices.getUserMedia({
 	    audio: true,
@@ -92,7 +106,7 @@ export default () => {
     }
     
     if (scriptProcessor !== null) {
-      scriptProcessor.removeEventListener('audioprocess', streamAudioData);
+      scriptProcessor.removeEventListener('audioprocess', streamAudioCallback);
     }
   }
 
@@ -101,3 +115,8 @@ export default () => {
     stop,
   }
 }
+/**
+* @typedef {Object} RecordType
+* @property {function} start start recording audio
+* @property {function} stop stop recording audio
+*/
