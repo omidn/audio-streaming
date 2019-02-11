@@ -1,6 +1,7 @@
 import lifecycle from 'recompose/lifecycle';
 import compose from 'recompose/compose';
 import withState from 'recompose/withState';
+import withHandlers from 'recompose/withHandlers';
 import api from 'sound-api';
 import Chrome from './Chrome';
 
@@ -18,16 +19,21 @@ const options = {
 export default compose(
   withState('recorder', 'setRecorder', null),
   withState('results', 'onSetResults', []),
+  withHandlers({
+    addResult: ({ results, onSetResults }) => (result) => {
+      onSetResults(results.concat(result));
+    },
+  }),
   lifecycle({
     componentDidMount() {
-      const { results, onSetResults, setRecorder } = this.props;
+      const { addResult, setRecorder } = this.props;
       const recorder = api.webSpeechApi({
         ...options,
         onResult: (res) => {
-          onSetResults(results.concat({
+          addResult({
             text: res[0].transcript,
             conf: res[0].confidence,
-          }));
+          });
         },
       });
 
