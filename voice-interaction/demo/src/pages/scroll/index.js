@@ -1,23 +1,41 @@
-import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import range from 'lodash/range';
-import styles from './styles.css';
+import compose from 'recompose/compose';
+import withProps from 'recompose/withProps';
+import lifecycle from 'recompose/lifecycle';
+import withState from 'recompose/withState';
+import withHandlers from 'recompose/withHandlers';
+import io from 'socket.io-client';
+import { recorder } from 'sound-api';
+import Scroll from './Scroll';
 
-const LongList = () => (
-  <div className={styles.scrollContainer}>
-    {
-      range(100).map(x => (
-        <p>{x}</p>
-      ))
-    }
-  </div>
-);
+const ENDPOINT = 'http://localhost:5555';
 
-const Scroll = () => (
-  <Paper className={styles.wrapper}>
-    <h1>Scroll exampe</h1>
-    <LongList />
-  </Paper>
-);
-
-export default Scroll;
+export default compose(
+  withProps((props) => {
+    const { start, stop } = recorder();
+    return {
+      ...props,
+      recorder: {
+        start,
+        stop,
+      },
+    };
+  }),
+  withState('results', 'onSetResults', []),
+  withState('socket', 'setSocket', null),
+  withHandlers({
+    addResult: ({ results, onSetResults }) => (result) => {
+      onSetResults(results.concat(result));
+    },
+  }),
+  lifecycle({
+    componentDidMount() {
+      const { setSocket, addResult } = this.props;
+      const socket = io(ENDPOINT);
+      setSocket(socket);
+      socket.on('message', (data) => {
+        const result = JSON.parse(data);
+        addResult({ text: result.transcript, conf: result.confidence });
+      });
+    },
+  }),
+)(Scroll);

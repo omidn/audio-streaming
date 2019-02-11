@@ -1,7 +1,25 @@
 .wrapper {
   display: flex;
   padding: 12px;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.wrapper > div {
+  flex: 2;
+}
+.wrapper > div:not(:last-child) {
+  border-right: 1px #ccc dashed;
+}
+.wrapper > div:last-child {
+  flex: 1;
+}
+.wrapper > div:not(:first-child) {
+  margin: 0 10px 0;
+}
+
+.settings {
+  padding: 12px;
+  flex: 3;
 }
 
 .scrollContainer {
