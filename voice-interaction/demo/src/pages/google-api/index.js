@@ -32,14 +32,14 @@ export default compose(
       const formData = new FormData();
       formData.append('file', file);
       try {
-        const r = await fetch('http://localhost:5555/upload', {
+        const r = await fetch(`${ENDPOINT}/upload`, {
           method: 'POST',
           body: formData,
         });
         const json = await r.json();
         addResult({ text: json.transcript, conf: json.confidence });
       } catch (err) {
-        // console.log('error', err);
+        // jsut don't crash and do nothing.
       }
     },
   }),

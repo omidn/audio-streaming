@@ -80,13 +80,44 @@ var recorder = () => {
     
 	  // This is for registering to the “data” event of audio stream, without overwriting the default scriptProcessor.onAudioProcess function if there is one.
 	  scriptProcessor.addEventListener('audioprocess', streamAudioData);
+    console.log('started recording');
   };
 
 
   const streamAudioData = (e) => {
-    // onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -> 16000
-    const floatSamples = e.inputBuffer.getChannelData(0);
-    onResult(Int16Array.from(floatSamples.map(n => n * 32767)).buffer);
+    onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -> 16000
+    // const floatSamples = e.inputBuffer.getChannelData(0);
+    // onResult(Int16Array.from(floatSamples.map(n => n * 32767)).buffer);
+  };
+
+  const downSampleBuffer = function (buffer, sampleRate, outSampleRate) {
+    if (outSampleRate == sampleRate) {
+      return buffer;
+    }
+    if (outSampleRate > sampleRate) {
+      throw "downsampling rate show be smaller than original sample rate";
+    }
+    
+    const sampleRateRatio = sampleRate / outSampleRate;
+    const newLength = Math.round(buffer.length / sampleRateRatio);
+    const result = new Int16Array(newLength);
+    let offsetResult = 0, offsetBuffer = 0;
+    
+    while (offsetResult < result.length) {
+      const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+      let accum = 0, count = 0;
+      for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+        accum += buffer[i];
+        count++;
+      }
+
+      // normalize the median buffer
+      result[offsetResult] = Math.min(1, accum / count) * 0x7FFF;
+      offsetResult++;
+      offsetBuffer = nextOffsetBuffer;
+    }
+    
+    return result.buffer;
   };
   
   // start recording 
@@ -94,14 +125,13 @@ var recorder = () => {
     onResult = func;
     // try to start recording audio
     navigator.mediaDevices.getUserMedia({
-	    audio: {
-	      mandatory: {
-		      googEchoCancellation: 'false',
-		      googAutoGainControl: 'false',
-		      googNoiseSuppression: 'false',
-		      googHighpassFilter: 'false',
-		    },
-	    },
+	    audio: true,
+      // mandatory: {
+		  //   googEchoCancellation: false,
+		  //   googAutoGainControl: false,
+		  //   googNoiseSuppression: false,
+		  //   googHighpassFilter: false,
+		  // },
     }).then((s) => {
       stream = s;
       startRecording(onResult);

@@ -3,6 +3,7 @@ export default () => {
   const audioContext = audioContext || new AudioContext();
   let onResult = null, inputPoint = null, stream = null, microphone = null, analyser = null,  scriptProcessor = null;
   
+  // docs
   const startRecording = (onResult, callback) => {
     if (!audioContext) {
       return;
@@ -29,14 +30,13 @@ export default () => {
 
   const streamAudioData = (e) => {
     onResult(downSampleBuffer(e.inputBuffer.getChannelData(0), audioContext.sampleRate, 16000)); // Usually, 44100 -> 16000
-    // const floatSamples = e.inputBuffer.getChannelData(0);
-    // onResult(Int16Array.from(floatSamples.map(n => n * 32767)).buffer);
   };
-
+  
   const downSampleBuffer = function (buffer, sampleRate, outSampleRate) {
     if (outSampleRate == sampleRate) {
       return buffer;
     }
+
     if (outSampleRate > sampleRate) {
       throw "downsampling rate show be smaller than original sample rate";
     }
@@ -68,14 +68,13 @@ export default () => {
     onResult = func;
     // try to start recording audio
     navigator.mediaDevices.getUserMedia({
-	    audio: {
-	      mandatory: {
-		      googEchoCancellation: 'false',
-		      googAutoGainControl: 'false',
-		      googNoiseSuppression: 'false',
-		      googHighpassFilter: 'false',
-		    },
-	    },
+	    audio: true,
+      // mandatory: {
+		  //   googEchoCancellation: false,
+		  //   googAutoGainControl: false,
+		  //   googNoiseSuppression: false,
+		  //   googHighpassFilter: false,
+		  // },
     }).then((s) => {
       stream = s;
       startRecording(onResult);
@@ -92,7 +91,7 @@ export default () => {
       stream = null;
     }
     
-    if (microphone !== null) {
+    if (scriptProcessor !== null) {
       scriptProcessor.removeEventListener('audioprocess', streamAudioData);
     }
   }

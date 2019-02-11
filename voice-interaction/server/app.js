@@ -7,11 +7,13 @@ const speech = require('@google-cloud/speech');
 const multer = require('multer');
 const fs = require('fs');
 
+const PORT = 5555
+
 const client = new speech.SpeechClient();
 
 const request = {
   config: {
-    enableWordTimeOffsets: true,
+    enableWordTimeOffsets: false,
     languageCode: 'en-US',
     sampleRateHertz: 16000,
     encoding: 'LINEAR16',
@@ -33,52 +35,47 @@ app.get('/', (req, res) => {
 
 // upload file route
 app.post('/upload', upload.single('file'), async (req, res) => {
-  const buffer = req.file.buffer.toString('base64');
-  const request = {
+  const [ response ] = await client.recognize({
+    ...request,
     audio: {
-      content: buffer,
-    },
-    config: {
-      encoding: 'LINEAR16',
-      // sampleRateHertz: 16000,
-      languageCode: 'en-US',
-    },
-    interimResults: true,
-  };
-  const [response] = await client.recognize(request);
-  const r = response.results[0].alternatives[0];
-  console.log({ transcript: r.transcript, confidence: r.confidence });
-  res.json({ transcript: r.transcript, confidence: r.confidence });
+      content: req.file.buffer.toString('base64'),
+    }
+  });
+  
+  const { transcript, confidence } = response.results[0].alternatives[0];
+  res.json({ transcript, confidence });
 });
+
 const createRecognizer = (socket) => {
   return client
     .streamingRecognize(request)
     .on('data', (res) => {
       const { transcript, confidence } = res.results[0].alternatives[0];
-      
+
       socket.send(JSON.stringify({
-        transcript, confidence
+        transcript, confidence,
       }));
     }).on('error', console.error);
 };
 
-
+// handle socket packets
 io.on('connection', (socket) => {
+  console.log('a user connected.');
   const recognizeStream = createRecognizer(socket);
-    
-  socket.on('message', (data) => {
-    recognizeStream.write(data);
+
+  socket.on('message', (buffer) => {
+    recognizeStream.write(buffer);
   });
-  
+
   socket.on('disconnect', () => {
+    console.log('a user disconnected.');
+    
     if (recognizeStream) {
-      console.log('a user is disconnected');
       recognizeStream.end();
     }
   })
 });
 
-
-http.listen(5555, () => {
-  console.log('app running on port 5555');
+http.listen(PORT, () => {
+  console.log(`app running on port ${PORT}`);
 });

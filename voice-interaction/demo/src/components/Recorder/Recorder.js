@@ -1,27 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import noop from 'lodash/noop';
 import Fab from '@material-ui/core/Fab';
 import MicIcon from '@material-ui/icons/Mic';
 import StopIcon from '@material-ui/icons/Stop';
 
-const Recorder = ({ isRecording, setIsRecording, onClick }) => (
+
+const Recorder = ({ isRecording, toggle }) => (
   <Fab
     color={isRecording ? 'primary' : 'secondary'}
-    onClick={() => { setIsRecording(!isRecording); onClick(!isRecording); }}
+    onClick={toggle}
   >
     {isRecording ? <StopIcon /> : <MicIcon />}
   </Fab>
 );
 
 Recorder.propTypes = {
-  onClick: PropTypes.func,
   isRecording: PropTypes.bool.isRequired,
-  setIsRecording: PropTypes.func.isRequired,
-};
-
-Recorder.defaultProps = {
-  onClick: noop,
+  toggle: PropTypes.func.isRequired,
 };
 
 export default Recorder;
