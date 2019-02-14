@@ -11,7 +11,6 @@ const GoogleApi = ({
   socket, recorder, results, onFileUpload,
 }) => {
   const onAudioRecordResult = (arr) => {
-    console.log('arr', arr);
     if (socket && socket.readyState === socket.OPEN) {
       socket.send(arr);
     }

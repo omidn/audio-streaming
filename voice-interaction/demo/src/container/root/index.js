@@ -8,13 +8,15 @@ import ChromePage from '../../pages/chrome';
 import GoogleApiPage from '../../pages/google-api';
 import ScrollPage from '../../pages/scroll';
 import ResourcesPage from '../../pages/resources';
+import AzurePage from '../../pages/azure';
+import DialogflowPage from '../../pages/dialogflow';
 import styles from './styles.css';
 
 const Root = () => (
   <div className={styles.App}>
     <AppBar position="static">
       <Toolbar className={styles.toolbar}>
-        Audio-to-Text Lab
+        Audio-to-Text examples
       </Toolbar>
     </AppBar>
     <Router>
@@ -24,6 +26,8 @@ const Root = () => (
             <Link to="/"><ListItem button>Chrome built-in</ListItem></Link>
             <Link to="/google-api"><ListItem button>Google Voice API</ListItem></Link>
             <Link to="/scroll-example"><ListItem button>Scroll example</ListItem></Link>
+            <Link to="/azure"><ListItem button>Microsoft Azure</ListItem></Link>
+            <Link to="/dialogflow"><ListItem button>Dialogflow</ListItem></Link>
             <Link to="/resources"><ListItem button>Other resources</ListItem></Link>
           </List>
         </div>
@@ -31,6 +35,8 @@ const Root = () => (
           <Route component={ChromePage} path="/" exact />
           <Route component={GoogleApiPage} path="/google-api" exact />
           <Route component={ScrollPage} path="/scroll-example" exact />
+          <Route component={AzurePage} path="/azure" exact />
+          <Route component={DialogflowPage} path="/dialogflow" exact />
           <Route component={ResourcesPage} path="/resources" />
         </div>
       </div>

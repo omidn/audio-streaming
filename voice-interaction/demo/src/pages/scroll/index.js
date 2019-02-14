@@ -16,8 +16,8 @@ const commands = {
   },
   'scroll-down': (input) => {
     input.scrollBy({ top: 200, left: 0, behavior: 'smooth' });
-  }
-}
+  },
+};
 
 export default compose(
   withProps((props) => {
@@ -35,28 +35,26 @@ export default compose(
   withState('socket', 'setSocket', null),
   withHandlers({
     addResult: ({ results, onSetResults, input }) => (result) => {
-      let { text } = result, isCommand = false;
+      let { text } = result;
       text = kebabCase(text);
-
-      for (let command in commands) {
-        const re = new RegExp(command, 'ig');
-        if (re.test(text)) {
-          isCommand = true;
+      const filter = Object.keys(commands)
+        .filter(command => new RegExp(command, 'ig').test(text))
+        .map((command) => {
           commands[command](input);
-          break;
-        }
-      }
-      
+          return command;
+        });
+
       onSetResults(results.concat({
         ...result,
-        isCommand,
+        isCommand: filter.length > 0,
       }));
     },
   }),
   lifecycle({
     componentDidMount() {
-      const { setSocket, addResult, input, setInput } = this.props;
-      console.log('input', input, setInput);
+      const {
+        setSocket, addResult,
+      } = this.props;
       const socket = io(ENDPOINT);
       setSocket(socket);
       socket.on('message', (data) => {

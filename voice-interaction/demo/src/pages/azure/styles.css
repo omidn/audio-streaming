@@ -1,0 +1,5 @@
+.wrapper {
+  padding: 12px;
+  min-height: 80vh;
+  overflow-y: scroll;
+}

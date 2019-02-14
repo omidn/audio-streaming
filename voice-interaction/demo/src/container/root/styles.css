@@ -49,16 +49,8 @@ body {
   margin: 40px;
   padding: 15px;
   height: 360px;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
+
 .results > div {
-  flex: 3;
-}
-.results > div:first-child {
-  border-right: 1px #ccc dashed;
-}
-.settings {
-  padding: 12px;
   flex: 3;
 }
