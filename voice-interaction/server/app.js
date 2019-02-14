@@ -6,8 +6,10 @@ const SocketStream = require('socket.io-stream');
 const speech = require('@google-cloud/speech');
 const multer = require('multer');
 const { createRecognizer, client } = require('./recognizer');
+const createAzureClient = require('./azure');
 const fs = require('fs');
 const PORT = 5555
+
 
 // enable cross Origin Resource Sharing
 app.use(cors());
@@ -17,8 +19,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // test route
-app.get('/', (req, res) => {
-  res.json({ test: 'ok' });
+app.get('/', (req, res) => { 
+ res.json({ test: 'ok' });
 });
 
 // upload file route
@@ -26,20 +28,18 @@ app.post('/upload', upload.single('file'), require('./upload')(client));
 
 // handle socket packets
 io.on('connection', (socket) => {
-  const recognizeStream = createRecognizer(socket);
-  let source = 'google';
+  let recognizeStream = null;
+  let azureStream = null;
   
-  socket.on('source', (s) => {
-    source = s;
-  })
-
   socket.on('message', (buffer) => {
+    if (!recognizeStream) {
+      recognizeStream = createRecognizer(socket);
+    }
     recognizeStream.write(buffer);
   });
 
   socket.on('disconnect', () => {
     console.log('a user disconnected.');
-    
     if (recognizeStream) {
       recognizeStream.end();
     }

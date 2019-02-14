@@ -4,14 +4,14 @@ import lifecycle from 'recompose/lifecycle';
 import withState from 'recompose/withState';
 import withHandlers from 'recompose/withHandlers';
 import io from 'socket.io-client';
-import { recorder } from 'sound-api';
-import GoogleApi from './GoogleApi';
+import { recorder as AudioRecorder } from 'sound-api';
+import View from '../../components/StreamExample';
 
 const ENDPOINT = 'http://localhost:5555';
 
 export default compose(
   withProps((props) => {
-    const { start, stop } = recorder();
+    const { start, stop } = AudioRecorder();
     return {
       ...props,
       recorder: {
@@ -23,6 +23,11 @@ export default compose(
   withState('results', 'onSetResults', []),
   withState('socket', 'setSocket', null),
   withHandlers({
+    onAudioRecordResult: ({ socket }) => (arr) => {
+      if (socket && socket.readyState === socket.OPEN) {
+        socket.send(arr);
+      }
+    },
     addResult: ({ results, onSetResults }) => (result) => {
       onSetResults(results.concat(result));
     },
@@ -42,12 +47,20 @@ export default compose(
         // jsut don't crash and do nothing.
       }
     },
+    onRecorderClickHandler: ({ onAudioRecordResult, socket, recorder }) => (isRecording) => {
+      if (isRecording) {
+        recorder.start(onAudioRecordResult);
+        socket.open();
+      } else {
+        socket.disconnect();
+        recorder.stop();
+      }
+    },
   }),
   lifecycle({
     componentDidMount() {
       const { setSocket, addResult } = this.props;
       const socket = io(ENDPOINT, { autoConnect: false });
-      socket.emit('source', 'google');
       setSocket(socket);
       socket.on('message', (data) => {
         const result = JSON.parse(data);
@@ -55,4 +68,4 @@ export default compose(
       });
     },
   }),
-)(GoogleApi);
+)(View);
