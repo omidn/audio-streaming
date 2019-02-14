@@ -35,15 +35,13 @@ export default compose(
   withState('socket', 'setSocket', null),
   withHandlers({
     addResult: ({ results, onSetResults, input }) => (result) => {
-      let { text } = result;
-      text = kebabCase(text);
+      const text = kebabCase(result.text);
       const filter = Object.keys(commands)
         .filter(command => new RegExp(command, 'ig').test(text))
         .map((command) => {
           commands[command](input);
           return command;
         });
-
       onSetResults(results.concat({
         ...result,
         isCommand: filter.length > 0,

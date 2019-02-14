@@ -47,6 +47,7 @@ export default compose(
     componentDidMount() {
       const { setSocket, addResult } = this.props;
       const socket = io(ENDPOINT, { autoConnect: false });
+      socket.emit('source', 'google');
       setSocket(socket);
       socket.on('message', (data) => {
         const result = JSON.parse(data);
